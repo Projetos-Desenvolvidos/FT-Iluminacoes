@@ -1,0 +1,361 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0f0f0f;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Barra de Navegação */
+.navbar {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar .fa-whatsapp {
+  font-size: 30px;
+  color: #25D366;
+}
+
+.navbar .logo img {
+  max-height: 100px;
+}
+.navbar nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+.navbar nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.navbar nav ul li a:hover {
+  color: #56A829;
+}
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Banner */
+.hero {
+  background: url("../assets/banner.png") center/cover no-repeat;
+  text-align: center;
+  padding: 100px 20px;
+}
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+.hero .highlight {
+  color: #ff3b64;
+}
+.btn-primary {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #3a77ff;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.btn-primary:hover {
+  background: #2958d4;
+}
+
+/* Nosso Diferencial */
+.hero-stats {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.stat-card {
+  background: rgba(35, 35, 35, 0.9);
+  padding: 60px;
+  border-radius: 10px;
+  min-width: 270px;
+  text-align: center;
+}
+
+/* Porque nos escolher */
+.why-us {
+  padding: 60px 20px;
+  text-align: center;
+}
+.why-us h2 {
+  margin-bottom: 40px;
+  font-size: 38px;
+}
+.highlight-orange {
+  color: #ff7f27;
+}
+.highlight-red {
+  color: #E53D3D;
+}
+.highlight-roxo {
+  color: #544EFF;
+}
+.highlight-pink {
+  color: #D16EB9;
+}
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.feature-card {
+  background: #222;
+  padding: 40px;
+  border-radius: 10px;
+  width: 340px;
+  text-align: center;
+}
+.feature-card i {
+  font-size: 30px;
+  margin-bottom: 15px;
+  color: #56A829;
+}
+
+h3{
+    font-size: 19px;
+ }
+ p{
+    font-size: 15px;
+    margin-top: 15px;
+    color: #D9D9D9;
+ }
+
+/* Eventos */
+.events {
+  padding: 60px 20px;
+  background: #eee;
+  color: #000;
+  text-align: center;
+}
+.event-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+.event-gallery img {
+  width: 100%;
+  border-radius: 10px;
+}
+.btn-secondary {
+  display: inline-block;
+  padding: 12px 25px;
+  background: #3a77ff;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Contatos */
+.contact {
+  text-align: center;
+  margin: 50px auto;
+}
+
+.contact h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.contact-box {
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  padding: 20px;
+  display: inline-block;
+  text-align: left;
+}
+
+.contact-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-box li {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.contact-box a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.contact-box a:hover {
+  color: #3db7e7;
+}
+
+.contact-box i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+/* Cores dos ícones */
+.fa-envelope { color: #ff4c4c; }
+.fa-whatsapp { color: #25D366; }
+.fa-facebook { color: #1877F2; }
+.fa-instagram { color: #C13584; }
+.fa-phone { color: #56A829; }
+
+/* Localização */
+.location {
+  text-align: center;
+  padding: 60px 20px;
+}
+.location img {
+  margin-top: 20px;
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #000;
+  font-size: 14px;
+}
+
+/* Tablet (até 1024px) */
+@media (max-width: 1024px) {
+  .hero h1 {
+    font-size: 40px;
+  }
+  .why-us h2 {
+    font-size: 32px;
+  }
+  .feature-card {
+    width: 400px;
+  }
+}
+
+/* Celulares médios (até 768px) */
+@media (max-width: 768px) {
+  .navbar nav ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: #111;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .navbar nav ul.active {
+    display: flex;
+  }
+  .navbar .logo img {
+    max-height: 60px;
+  }
+  .menu-toggle {
+    display: block;
+  }
+  .hero h1 {
+    font-size: 33px;
+    margin-bottom: 20px;
+  }
+  .why-us h2 {
+    margin-bottom: 40px;
+    font-size: 28px;
+  }
+  .feature-card {
+    background: #353535;
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%; 
+    text-align: center;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  p {
+    font-size: 15px;
+    margin-top: 15px;
+  }
+}
+
+/* Celulares pequenos (até 480px) */
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 26px;
+  }
+  .why-us h2 {
+    font-size: 22px;
+  }
+  .feature-card {
+    padding: 20px;
+    width: 95%;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  p {
+    font-size: 14px;
+  }
+}
+
+/* Celulares compactos (até 360px) */
+@media (max-width: 360px) {
+  .hero h1 {
+    font-size: 22px;
+  }
+  .why-us h2 {
+    font-size: 20px;
+  }
+  .feature-card {
+    padding: 15px;
+    width: 100%;
+  }
+  h3 {
+    font-size: 15px;
+  }
+  p {
+    font-size: 13px;
+  }
+}
+
+
+/* Animações */
+.animate-fade {
+  animation: fadeIn 1.2s ease-in-out;
+}
+.animate-up {
+  animation: fadeUp 1.2s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}

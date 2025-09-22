@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - F&T Iluminações</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://kit.fontawesome.com/4e6a5b5f7d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="./assets/F&T_1 1.png" alt="Logo F&T Iluminações">
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="./paginas/sobre.html">A F&T Iluminações</a></li>
+        <li><a href="./paginas/servicos.html">Serviços</a></li>
+        <li><a href="./paginas/eventos.html">Eventos</a></li>
+        <li><a href="./paginas/contatos.html">Contatos</a></li>
+        <li>
+            <a href="https://wa.me/5562992352370" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+  </header>
+
+  <!-- Banner -->
+  <section class="hero">
+    <div class="hero-content animate-fade">
+      <h1><span class="highlight">Eventos</span> que Inspiram e <span class="highlight">Conectam</span><br><span class="highlight">Paixão</span> por <span class="highlight">Realizar</span></h1>
+      <a href="https://wa.me/5562992352370" class="btn-primary">Agendar evento</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-card animate-up">
+        <h2><span class="highlight-red">1K+</span></h2>
+        <p>Eventos Realizados</p>
+      </div>
+      <div class="stat-card animate-up">
+        <h2><span class="highlight-roxo">50K+</span></h2>
+        <p>Pessoas impactadas</p>
+      </div>
+      <div class="stat-card animate-up">
+        <h2><span class="highlight-pink">98%</span></h2>
+        <p>Satisfação</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUE ESCOLHER -->
+  <section class="why-us">
+    <h2>Por que <span class="highlight-orange">Escolher</span> a <span class="highlight-orange">F&T</span>ILuminações?</h2>
+    <div class="features">
+      <div class="feature-card animate-up">
+        <img src="./assets/Vector.png" alt="Emoji de Sorriso">
+        <h3>Seu evento com a sua cara</h3>
+        <p>Aqui fazemos de tudo para satisfazer nossos clientes.</p>
+      </div>
+      <div class="feature-card animate-up">
+        <img src="./assets/pngegg (1) 1.png" alt="Prancheta">
+        <h3>Planejamento Completo</h3>
+        <p>Cuidamos de cada detalhe para que seu evento seja perfeito.</p>
+      </div>
+      <div class="feature-card animate-up">
+        <img src="./assets/Vector (1).png" alt="Estrela">
+        <h3>Experiências Únicas</h3>
+        <p>Criamos momentos inesquecíveis que marcam positivamente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOSSOS EVENTOS -->
+  <section class="events">
+    <h2>Nossos eventos</h2>
+    <div class="event-gallery">
+      <img src="./assets/image 12.png" alt="Evento 1">
+      <img src="./assets/image 13.png" alt="Evento 2">
+      <img src="./assets/image 14.png" alt="Evento 3">
+      <img src="./assets/image 15.png" alt="Evento 4">
+    </div>
+    <a href="./paginas/eventos.html" class="btn-secondary">Saiba mais</a>
+  </section>
+
+    <!-- CONTATO -->
+    <section class="contact">
+    <h2>Fale Conosco!</h2>
+    <div class="contact-box">
+        <ul>
+        <li>
+            <a href="mailto:ftiluminacoes2005@gmail.com" target="_blank">
+            <i class="fas fa-envelope"></i> ftiluminacoes2005@gmail.com
+            </a>
+        </li>
+        <li>
+            <a href="https://wa.me/5562992352370" target="_blank">
+            <i class="fab fa-whatsapp"></i> (62) 99235-2370
+            </a>
+        </li>
+        <li>
+            <a href="https://facebook.com/fetiluminacoes" target="_blank">
+            <i class="fab fa-facebook"></i> facebook.com/fetiluminacoes
+            </a>
+        </li>
+        <li>
+            <a href="https://instagram.com/ft_iluminacoes" target="_blank">
+            <i class="fab fa-instagram"></i> @ft_iluminacoes
+            </a>
+        </li>
+        <li>
+            <a href="tel:+5562992352370">
+            <i class="fas fa-phone"></i> (62) 99235-2370
+            </a>
+        </li>
+        </ul>
+    </div>
+    </section>
+
+
+  <!-- LOCALIZAÇÃO -->
+  <section class="location">
+    <h2>Onde nos encontrar</h2>
+    <img src="https://via.placeholder.com/600x200?text=Mapa" alt="Mapa Localização">
+  </section>
+
+  <footer>
+    <p>&copy; 2025 F&T Iluminações - Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    // Toggle menu mobile
+    const toggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    toggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
