@@ -1,0 +1,396 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #141613;
+  color: #fff;
+  line-height: 1.6;
+}
+
+/* Barra de Navegação */
+.navbar {
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar .fa-whatsapp {
+  font-size: 30px;
+  color: #25D366;
+}
+
+.navbar .logo img {
+  max-height: 100px;
+}
+.navbar nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+.navbar nav ul li a {
+  color: #D9D9D9;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.navbar nav ul li a:hover {
+  color: #3db7e7;
+}
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+a { color: inherit; }
+
+/* SOBRE */
+.hero-about {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 36px auto;
+  padding: 0 20px;
+}
+.about-text h2 {
+  color: #D9D9D9;
+  font-size: 18px;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+.about-text p {
+  color: #cfcfcf;
+  margin-bottom: 16px;
+  text-align: justify;
+  font-size: 15px;
+}
+.about-logo img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Seção da Linha do Tempo */
+.timeline-section {
+  padding: 60px 20px;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+.timeline-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: #89CFF0;
+}
+
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: #89CFF0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
+
+.timeline-item {
+  padding: 20px 40px;
+  position: relative;
+  width: 50%;
+}
+
+.timeline-item .content {
+  padding: 20px 30px;
+  background: #1a1a1a;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(137, 207, 240, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item .content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(137, 207, 240, 0.8);
+}
+
+.timeline-item.left {
+  left: 0;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+.timeline-item::before {
+  content: " ";
+  position: absolute;
+  top: 20px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #89CFF0;
+  border: 4px solid #fff;
+  z-index: 1;
+}
+
+/* Item centralizado da timeline */
+.timeline-item.center {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+}
+
+.timeline-item.center::before {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-item.center .content.destaque {
+  background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+  border: 2px solid #89CFF0;
+  text-align: justify;
+  box-shadow: 0 0 30px rgba(137, 207, 240, 0.7);
+}
+
+.timeline-item.center .content.destaque h3 {
+  font-size: 2rem;
+  color: #fff;
+  text-shadow: 0 0 12px #89CFF0;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+  .timeline-item.center {
+    left: 20px;
+    transform: translateX(0);
+    width: calc(100% - 40px);
+  }
+
+  .timeline-item.center::before {
+    left: 0;
+    transform: none;
+  }
+}
+
+.timeline-item.left::before {
+  right: -17px;
+}
+
+.timeline-item.right::before {
+  left: -17px;
+}
+
+.timeline-item h3 {
+  color: #89CFF0;
+  margin-bottom: 10px;
+}
+
+.timeline-item p {
+  margin: 0;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+  .timeline::after {
+    left: 20px;
+  }
+
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 25px;
+    margin-bottom: 40px;
+  }
+
+  .timeline-item.right {
+    left: 0%;
+  }
+
+  .timeline-item.left::before,
+  .timeline-item.right::before {
+    left: 0px;
+  }
+}
+
+@media (max-width: 900px) {
+  .timeline-grid::before {
+    display: none;
+  }
+
+  .timeline-row {
+    grid-template-columns: 1fr;
+    margin-bottom: 40px;
+  }
+
+  .timeline-content {
+    text-align: left;
+    margin: 0;
+  }
+
+  .timeline-dot {
+    display: none;
+  }
+}
+
+
+/* MVV (Missão, Visão, Valores) */
+.mvv {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px 40px 20px;
+  text-align: center;
+}
+.mvv h2 {
+  color: #D9D9D9;
+  margin-bottom: 24px;
+}
+.mvv-grid {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+.mvv-card {
+  width: 280px;
+  background: transparent;
+  text-align: center;
+  color: #D9D9D9;
+  padding: 18px 12px;
+}
+.mvv-card i {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #ff7f27;
+}
+
+/* Contatos */
+.contact {
+  text-align: center;
+  margin: 50px auto;
+}
+
+.contact h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.contact-box {
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
+  padding: 40px;
+  display: inline-block;
+  text-align: left;
+}
+
+.contact-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.contact-box li {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.contact-box a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.contact-box a:hover {
+  color: #3db7e7;
+}
+
+.contact-box i {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+/* cores dos ícones */
+.contact-box .fa-envelope { color: #D44638; }
+.contact-box .fa-whatsapp { color: #25D366; }
+.contact-box .fa-facebook { color: #1877F2; }
+.contact-box .fa-instagram { color: #E4405F; }
+.contact-box .fa-phone { color: #56A829; }
+
+/* FOOTER */
+.site-footer {
+  text-align: center;
+  padding: 40px 20px 80px 20px;
+}
+.footer-logo {
+  max-width: 260px;
+  margin: 16px auto;
+  display: block;
+}
+
+/* animação simples */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+body > * { animation: fadeInUp 0.6s ease both; }
+
+
+/* Tablets grandes */
+@media (max-width: 1024px) {
+  .hero-about { grid-template-columns: 1fr 320px; gap: 28px; }
+  .tl-left, .tl-right { max-width: 380px; }
+}
+
+/* celulares médios */
+@media (max-width: 768px) {
+  .menu-toggle { display: block; }
+  .nav-links { display: none; position: absolute; top: 70px; right: 20px; background: #111; padding: 16px; border-radius: 8px; flex-direction: column; gap: 12px; }
+  .nav-links.active { display: flex; }
+  .hero-about { grid-template-columns: 1fr; gap: 18px; padding: 0 18px; }
+  .about-logo { order: -1; }
+
+
+  .mvv-grid { flex-direction: column; align-items: center; }
+  .contact-box { width: calc(100% - 40px); }
+}
+
+/* celulares pequenos */
+@media (max-width: 480px) {
+  .navbar { padding: 12px 18px; height: 72px; }
+  .navbar .logo img { max-height: 68px; }
+  .hero-about { margin: 20px auto; }
+  .about-text p { font-size: 14px; }
+  .tl-left h3, .tl-right h3 { font-size: 15px; }
+  .contact-box { padding: 18px; }
+  .social-fixed { right: 8px; gap: 10px; }
+}
+
+/* celulares muito compactos */
+@media (max-width: 360px) {
+  .about-text p { font-size: 13px; }
+  .contact-box li { font-size: 13px; }
+  .menu-toggle { font-size: 20px; }
+}
