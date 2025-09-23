@@ -38,13 +38,13 @@ body {
   gap: 20px;
 }
 .navbar nav ul li a {
-  color: #fff;
+  color: #D9D9D9;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
 }
 .navbar nav ul li a:hover {
-  color: #56A829;
+  color: #3db7e7;
 }
 .menu-toggle {
   display: none;
@@ -186,8 +186,8 @@ h3{
 
 .contact-box {
   border: 1px solid #D9D9D9;
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 4px;
+  padding: 40px;
   display: inline-block;
   text-align: left;
 }
@@ -301,15 +301,23 @@ footer {
     font-size: 15px;
     margin-top: 15px;
   }
+
+  .contact-box {
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
+  padding: 25px;
+  display: inline-block;
+  text-align: left;
+}
 }
 
 /* Celulares pequenos (até 480px) */
 @media (max-width: 480px) {
   .hero h1 {
-    font-size: 26px;
+    font-size: 32px;
   }
   .why-us h2 {
-    font-size: 22px;
+    font-size: 30px;
   }
   .feature-card {
     padding: 20px;
