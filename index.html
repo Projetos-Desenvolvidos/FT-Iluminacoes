@@ -12,25 +12,27 @@
 <body>
 
   <!-- HEADER -->
-  <header class="navbar">
-    <div class="logo">
-      <a href="index.html"><img src="./assets/F&T_1 1.png" alt="Logo F&T Iluminações"></a>
-    </div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="./paginas/sobre.html">A F&T Iluminações</a></li>
-        <li><a href="./paginas/servicos.html">Serviços</a></li>
-        <li><a href="./paginas/eventos.html">Eventos</a></li>
-        <li><a href="./paginas/contatos.html">Contatos</a></li>
-        <li>
-            <a href="https://wa.me/5562992352370" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-            </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-  </header>
+    <header class="navbar">
+        <div class="logo">
+            <a href="../index.html"><img src="../assets/F&T_1 1.png" alt="Logo F&T Iluminações"></a>
+        </div>
+
+        <nav>
+            <ul class="nav-links">
+                <li><a href="./paginas/sobre.html">A F&T Iluminações</a></li>
+                <li><a href="./paginas/servicos.html">Serviços</a></li>
+                <li><a href="./paginas/eventos.html">Eventos</a></li>
+                <li><a href="./paginas/contatos.html">Contatos</a></li>
+                <li>
+                    <a href="https://wa.me/5562992352370" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+    </header>
 
   <!-- Banner -->
   <section class="hero">
@@ -134,13 +136,22 @@
     <p>&copy; 2025 F&T Iluminações - Todos os direitos reservados - Desenvolvido por <a href="https://www.instagram.com/murillosantanna__/">Murillo Sant'Anna</a></p>
   </footer>
 
-  <script>
-    // Toggle menu mobile
-    const toggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    toggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-  </script>
+    <script>
+      const toggle = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      const toggleIcon = toggle.querySelector('i');
+
+      toggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+
+        if (toggleIcon.classList.contains('fa-bars')) {
+          toggleIcon.classList.remove('fa-bars');
+          toggleIcon.classList.add('fa-times');
+        } else {
+          toggleIcon.classList.remove('fa-times');
+          toggleIcon.classList.add('fa-bars');
+        }
+      });
+    </script>
 </body>
 </html>
