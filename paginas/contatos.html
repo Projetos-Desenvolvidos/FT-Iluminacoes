@@ -64,5 +64,22 @@
     <p>&copy; 2025 F&T Iluminações - Todos os direitos reservados - Desenvolvido por <a href="https://www.instagram.com/murillosantanna__/">Murillo Sant'Anna</a></p>
   </footer>
 
+    <script>
+        const toggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const toggleIcon = toggle.querySelector('i');
 
+        toggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+
+
+            if (toggleIcon.classList.contains('fa-bars')) {
+                toggleIcon.classList.remove('fa-bars');
+                toggleIcon.classList.add('fa-times');
+            } else {
+                toggleIcon.classList.remove('fa-times');
+                toggleIcon.classList.add('fa-bars');
+            }
+        })
+    </script>
 </html>
