@@ -197,7 +197,8 @@ h3{
 .events {
   padding: 60px 20px;
   background: #eee;
-  color: #000;
+  color: #1b1b1b;
+  font-weight: bold;
   text-align: center;
 }
 .event-gallery {
@@ -222,57 +223,71 @@ h3{
 
 /* Contatos */
 .contact {
-  text-align: center;
-  margin: 50px auto;
+    text-align: center;
+    margin: 50px auto;
 }
 
 .contact h2 {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  color: #fff;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #D9D9D9;
 }
 
 .contact-box {
-  border: 1px solid #D9D9D9;
-  border-radius: 4px;
-  padding: 40px;
-  display: inline-block;
-  text-align: left;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    padding: 40px;
+    display: inline-block;
+    text-align: left;
 }
 
 .contact-box ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .contact-box li {
-  margin: 10px 0;
-  font-size: 23px;
-  color: #fff;
+    margin: 10px 0;
+    font-size: 23px;
+    color: #D9D9D9;
 }
 
 .contact-box a {
-  text-decoration: none;
-  color: inherit;
-  transition: color 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
 }
 
 .contact-box a:hover {
-  color: #3db7e7;
+    color: #3db7e7;
 }
 
 .contact-box i {
-  margin-right: 10px;
-  font-size: 1.2rem;
+    margin-right: 10px;
+    font-size: 1.2rem;
 }
 
-/* Cores dos ícones */
-.fa-envelope { color: #ff4c4c; }
-.fa-whatsapp { color: #25D366; }
-.fa-facebook { color: #1877F2; }
-.fa-instagram { color: #C13584; }
-.fa-phone { color: #56A829; }
+/* cores dos ícones */
+.contact-box .fa-envelope {
+    color: #D44638;
+}
+
+.contact-box .fa-whatsapp {
+    color: #25D366;
+}
+
+.contact-box .fa-facebook {
+    color: #1877F2;
+}
+
+.contact-box .fa-instagram {
+    color: #E4405F;
+}
+
+.contact-box .fa-phone {
+    color: #56A829;
+}
 
 /* Localização */
 .location {

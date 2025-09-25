@@ -110,7 +110,7 @@ body {
 .contact h2 {
     margin-bottom: 20px;
     font-size: 1.5rem;
-    color: #fff;
+    color: #D9D9D9;
 }
 
 .contact-box {
@@ -130,7 +130,11 @@ body {
 .contact-box li {
     margin: 10px 0;
     font-size: 23px;
-    color: #fff;
+    color: #D9D9D9;
+}
+
+h2{
+    color: #D9D9D9;
 }
 
 .contact-box a {
