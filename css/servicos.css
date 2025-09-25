@@ -57,7 +57,7 @@ body {
     cursor: pointer;
 }
 
-/* ===== MENU MOBILE ===== */
+/* MENU MOBILE */
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
