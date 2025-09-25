@@ -30,7 +30,7 @@ body {
 }
 
 .navbar .logo img {
-  max-height: 100px;
+  max-height: 70px;
 }
 
 .navbar nav ul {
@@ -290,6 +290,11 @@ footer {
   text-align: center;
   padding: 20px;
   font-size: 14px;
+}
+
+footer p a{
+  text-decoration: none;
+  color: #1877F2;
 }
 
 /* Tablet (até 1024px) */
