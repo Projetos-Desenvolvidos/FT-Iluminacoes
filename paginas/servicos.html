@@ -32,6 +32,58 @@
         <div class="menu-toggle"><i class="fas fa-bars"></i></div>
     </header>
 
+    <!-- SLIDES DE SERVIÇOS -->
+    <section class="services">
+    
+        <!-- Iluminação -->
+        <div class="service-section">
+            <h2>Iluminação</h2>
+            <div class="carousel">
+                <button class="prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track">
+                    <img src="../assets/iluminacao1.jpg" alt="Iluminação 1">
+                    <img src="../assets/iluminacao2.jpg" alt="Iluminação 2">
+                    <img src="../assets/iluminacao3.jpg" alt="Iluminação 3">
+                    <img src="../assets/iluminacao4.jpg" alt="Iluminação 4">
+                    <img src="../assets/iluminacao1.jpg" alt="Iluminação 1">
+                    <img src="../assets/iluminacao2.jpg" alt="Iluminação 2">
+                    <img src="../assets/iluminacao3.jpg" alt="Iluminação 3">
+                    <img src="../assets/iluminacao4.jpg" alt="Iluminação 4">
+                    <img src="../assets/iluminacao1.jpg" alt="Iluminação 1">
+                    <img src="../assets/iluminacao2.jpg" alt="Iluminação 2">
+                    <img src="../assets/iluminacao3.jpg" alt="Iluminação 3">
+                    <img src="../assets/iluminacao4.jpg" alt="Iluminação 4">
+                </div>
+                <button class="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    
+        <!-- Som -->
+        <div class="service-section">
+            <h2>Som</h2>
+            <div class="carousel">
+                <button class="prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel-track">
+                    <img src="../assets/iluminacao1.jpg" alt="Iluminação 1">
+                    <img src="../assets/iluminacao2.jpg" alt="Iluminação 2">
+                    <img src="../assets/iluminacao3.jpg" alt="Iluminação 3">
+                    <img src="../assets/iluminacao4.jpg" alt="Iluminação 4">
+                    <img src="../assets/iluminacao1.jpg" alt="Iluminação 1">
+                    <img src="../assets/iluminacao2.jpg" alt="Iluminação 2">
+                    <img src="../assets/iluminacao3.jpg" alt="Iluminação 3">
+                    <img src="../assets/iluminacao4.jpg" alt="Iluminação 4">
+                    <img src="../assets/iluminacao1.jpg" alt="Iluminação 1">
+                    <img src="../assets/iluminacao2.jpg" alt="Iluminação 2">
+                    <img src="../assets/iluminacao3.jpg" alt="Iluminação 3">
+                    <img src="../assets/iluminacao4.jpg" alt="Iluminação 4">
+                </div>
+                <button class="next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    
+    </section>
+    <!-- Slides -->
+
     <!-- CONTATO -->
     <section class="contact">
         <h2>Fale Conosco!</h2>
@@ -61,24 +113,7 @@
                 href="https://www.instagram.com/murillosantanna__/">Murillo Sant'Anna</a></p>
     </footer>
 
-    <script>
-        const toggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-        const toggleIcon = toggle.querySelector('i');
-
-        toggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-
-
-            if (toggleIcon.classList.contains('fa-bars')) {
-                toggleIcon.classList.remove('fa-bars');
-                toggleIcon.classList.add('fa-times');
-            } else {
-                toggleIcon.classList.remove('fa-times');
-                toggleIcon.classList.add('fa-bars');
-            }
-        })
-    </script>
+    <script src="../js/script.js"></script>
     
 </body>
 </html>
