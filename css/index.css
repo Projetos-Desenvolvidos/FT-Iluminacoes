@@ -112,7 +112,11 @@ body {
   margin-bottom: 20px;
 }
 .hero .highlight {
-  color: #ff3b64;
+  font-weight: bold;
+  background: linear-gradient(90deg, #D370BC 0%, #D370BC 80%, #400A0A 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 .btn-primary {
   display: inline-block;
