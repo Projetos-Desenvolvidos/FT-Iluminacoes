@@ -148,6 +148,12 @@ body {
   border-radius: 10px;
   min-width: 270px;
   text-align: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  background-color: rgba(44, 44, 44, 0.9);
 }
 
 .stat-card h2 {
