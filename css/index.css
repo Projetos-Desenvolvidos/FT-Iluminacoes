@@ -200,7 +200,22 @@ body {
   border-radius: 10px;
   width: 340px;
   text-align: center;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  background-color: #353535;
+}
+
+.feature-card img {
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover img {
+  transform: scale(1.1); 
+}
+
 .feature-card i {
   font-size: 30px;
   margin-bottom: 15px;
