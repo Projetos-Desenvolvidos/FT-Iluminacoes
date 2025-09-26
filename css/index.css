@@ -103,7 +103,9 @@ body {
 
 /* Banner */
 .hero {
-  background: url("../assets/banner.png") center/cover no-repeat;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    url("../assets/banner.png") center/cover no-repeat;
   text-align: center;
   padding: 100px 20px;
 }
@@ -117,6 +119,10 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+
+  text-shadow: 
+        0 0 30px #D370BC,
+        0 0 45px #400A0A; 
 }
 .btn-primary {
   display: inline-block;
