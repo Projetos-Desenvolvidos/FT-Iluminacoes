@@ -118,7 +118,7 @@ body {
   background-clip: text;
   color: transparent;
 
-  text-shadow: 0 0 30px #d370bc, 0 0 45px #400a0a;
+  text-shadow: 0 0 50px #d370bc, 0 0 60px #400a0a;
 }
 .btn-primary {
   display: inline-block;
@@ -176,21 +176,18 @@ body {
 .highlight-red {
   color: #e53d3d;
   text-shadow: 
-    0 0 20px #e53d3d,
     0 0 40px #e53d3d,
     0 0 60px #e53d3d;
 }
 .highlight-roxo {
   color: #544eff;
   text-shadow: 
-    0 0 20px #544eff,
     0 0 40px #544eff,
     0 0 60px #544eff;
 }
 .highlight-pink {
   color: #d16eb9;
   text-shadow: 
-    0 0 20px #d16eb9,
     0 0 40px #d16eb9,
     0 0 60px #d16eb9;
 }
