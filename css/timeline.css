@@ -1,7 +1,7 @@
 .timeline {
     white-space: nowrap;
     overflow-x: hidden;
-    background: #e53d3d;
+    background: #1b1b1b;
     padding: 150px 0;
 }
 
@@ -114,12 +114,13 @@
 }
 
 .timeline .arrows button {
-    background: transparent;
+    background: #d9d9d9;
     border: none;
     cursor: pointer;
     padding: 0;
     outline: none;
     transition: opacity 0.3s ease;
+    border-radius: 50%;
 }
 
 .timeline .arrows .arrow__prev {

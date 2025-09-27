@@ -26,65 +26,6 @@
   margin: 0 auto;
 }
 
-/* Seção da Linha do Tempo */
-.title{
-  text-align: center;
-  margin: 20px;
-}
-
-.timeline-section {
-  padding: 60px 20px;
-  color: #fff;
-  font-family: 'Arial', sans-serif;
-}
-
-.timeline-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.timeline-item {
-  background: #111;
-  padding: 25px 30px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.timeline-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 20px rgba(255,255,255,0.2);
-}
-
-.timeline-item h3 {
-  color: #fff;
-  font-size: 1.4rem;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.timeline-item p {
-  color: #ccc;
-  line-height: 1.6;
-  font-size: 0.95rem;
-}
-
-.timeline-item.full-width {
-  grid-column: 1 / -1;
-  text-align: justify;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-  .timeline-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Missão, Visão, Valores */
 .mvv {
   max-width: 1100px;
