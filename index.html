@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="assets/Icon.ico">
-  <script src="https://kit.fontawesome.com/4e6a5b5f7d.js" crossorigin="anonymous"></script>
 </head>
 <body class="page-home">
 
@@ -21,9 +20,9 @@
     <div class="ft-loader__beam" aria-hidden="true"></div>
     <div class="ft-loader__inner">
       <div class="ft-loader__logo">
-        <img class="ft-loader__logo-ghost" src="./assets/F&T 2.png" alt="" width="160" height="48" decoding="async">
+        <picture><source type="image/webp" srcset="./assets/F&T 2.webp"><img class="ft-loader__logo-ghost" src="./assets/F&T 2.png" alt="" width="160" height="48" decoding="async"></picture>
         <div class="ft-loader__logo-fill" id="ft-loader-logo-fill">
-          <img class="ft-loader__logo-color" src="./assets/F&T 2.png" alt="F&amp;T Iluminações" width="160" height="48" decoding="async">
+          <picture><source type="image/webp" srcset="./assets/F&T 2.webp"><img class="ft-loader__logo-color" src="./assets/F&T 2.png" alt="F&amp;T Iluminações" width="160" height="48" decoding="async"></picture>
         </div>
       </div>
       <div class="ft-loader__progress">
@@ -41,7 +40,7 @@
       <span class="hero-brand-name">Iluminações</span>
     </a>
     <a href="index.html" class="hero-logo-mark" aria-label="F&amp;T Iluminações">
-      <img src="./assets/F&T 2.png" alt="F&amp;T Iluminações">
+      <picture><source type="image/webp" srcset="./assets/F&T 2.webp"><img src="./assets/F&T 2.png" alt="F&amp;T Iluminações"></picture>
     </a>
   </div>
 
@@ -186,19 +185,19 @@
       <div class="about-section__gallery-viewport">
         <div class="about-section__gallery" role="region" aria-label="Galeria de eventos">
           <figure class="about-section__card">
-            <img src="./assets/casamento4.jpg" alt="Cerimônia de casamento com iluminação e decoração" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="./assets/casamento4.webp"><img src="./assets/casamento4.jpg" alt="Cerimônia de casamento com iluminação e decoração" loading="lazy" decoding="async"></picture>
           </figure>
           <figure class="about-section__card">
-            <img src="./assets/casamento8.jpg" alt="Recepção de casamento com iluminação ambiente" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="./assets/casamento8.webp"><img src="./assets/casamento8.jpg" alt="Recepção de casamento com iluminação ambiente" loading="lazy" decoding="async"></picture>
           </figure>
           <figure class="about-section__card">
-            <img src="./assets/iluminacao7.jpg" alt="Evento noturno com iluminação de piscina e jardim" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="./assets/iluminacao7.webp"><img src="./assets/iluminacao7.jpg" alt="Evento noturno com iluminação de piscina e jardim" loading="lazy" decoding="async"></picture>
           </figure>
           <figure class="about-section__card">
-            <img src="./assets/led8.jpg" alt="Estrutura de LED em formato de V iluminando entrada do evento" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="./assets/led8.webp"><img src="./assets/led8.jpg" alt="Estrutura de LED em formato de V iluminando entrada do evento" loading="lazy" decoding="async"></picture>
           </figure>
           <figure class="about-section__card">
-            <img src="./assets/iluminacao1.jpg" alt="Iluminação cênica com lasers e efeitos de luz em festa" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="./assets/iluminacao1.webp"><img src="./assets/iluminacao1.jpg" alt="Iluminação cênica com lasers e efeitos de luz em festa" loading="lazy" decoding="async"></picture>
           </figure>
         </div>
       </div>
@@ -224,6 +223,8 @@
         <article class="cinematic-slide is-active" data-accent="#c026d3">
           <div class="cinematic-slide__media">
             <picture>
+              <source type="image/webp" media="(max-width: 900px)" srcset="./assets/casamento3.webp">
+              <source type="image/webp" srcset="./assets/casamento4.webp">
               <source media="(max-width: 900px)" srcset="./assets/casamento3.jpg">
               <img src="./assets/casamento4.jpg" alt="Cerimônia de casamento com iluminação e decoração" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async">
             </picture>
@@ -239,6 +240,8 @@
         <article class="cinematic-slide" data-accent="#3e8ce5">
           <div class="cinematic-slide__media">
             <picture>
+              <source type="image/webp" media="(max-width: 900px)" srcset="./assets/iluminacao3.webp">
+              <source type="image/webp" srcset="./assets/iluminacao7.webp">
               <source media="(max-width: 900px)" srcset="./assets/iluminacao3.jpg">
               <img src="./assets/iluminacao7.jpg" alt="Evento noturno com iluminação de piscina e jardim" width="1920" height="1080" loading="lazy" decoding="async">
             </picture>
@@ -254,6 +257,8 @@
         <article class="cinematic-slide" data-accent="#a855f7">
           <div class="cinematic-slide__media">
             <picture>
+              <source type="image/webp" media="(max-width: 900px)" srcset="./assets/led8.webp">
+              <source type="image/webp" srcset="./assets/led1.webp">
               <source media="(max-width: 900px)" srcset="./assets/led8.jpg">
               <img src="./assets/led1.jpg" alt="Passarela com painéis de LED iluminados" width="1920" height="1080" loading="lazy" decoding="async">
             </picture>
@@ -269,6 +274,8 @@
         <article class="cinematic-slide" data-accent="#10b981">
           <div class="cinematic-slide__media">
             <picture>
+              <source type="image/webp" media="(max-width: 900px)" srcset="./assets/som2-m.webp">
+              <source type="image/webp" srcset="./assets/som2.webp">
               <source media="(max-width: 900px)" srcset="./assets/som2-m.png">
               <img src="./assets/som2.jpg" alt="Sistema de som e estrutura em evento" width="1920" height="1080" loading="lazy" decoding="async">
             </picture>
@@ -284,6 +291,8 @@
         <article class="cinematic-slide" data-accent="#ea580c">
           <div class="cinematic-slide__media">
             <picture>
+              <source type="image/webp" media="(max-width: 900px)" srcset="./assets/debutante3.webp">
+              <source type="image/webp" srcset="./assets/iluminacao5.webp">
               <source media="(max-width: 900px)" srcset="./assets/debutante3.jpg">
               <img src="./assets/iluminacao5.jpg" alt="Festa de debutante com iluminação e decoração premium" width="1920" height="1080" loading="lazy" decoding="async">
             </picture>
@@ -383,19 +392,19 @@
       <div class="depoimentos__showcase" data-depoimentos-showcase>
         <div class="depoimentos__media" aria-hidden="true">
           <figure class="depoimentos__visual is-active" data-index="0">
-            <img src="./assets/casamento3.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="./assets/casamento3.webp"><img src="./assets/casamento3.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async"></picture>
             <div class="depoimentos__visual-overlay"></div>
           </figure>
           <figure class="depoimentos__visual" data-index="1">
-            <img src="./assets/debutante3.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="./assets/debutante3.webp"><img src="./assets/debutante3.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async"></picture>
             <div class="depoimentos__visual-overlay"></div>
           </figure>
           <figure class="depoimentos__visual" data-index="2">
-            <img src="./assets/corporativo2.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="./assets/corporativo2.webp"><img src="./assets/corporativo2.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async"></picture>
             <div class="depoimentos__visual-overlay"></div>
           </figure>
           <figure class="depoimentos__visual" data-index="3">
-            <img src="./assets/iluminacao7.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+            <picture><source type="image/webp" srcset="./assets/iluminacao7.webp"><img src="./assets/iluminacao7.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async"></picture>
             <div class="depoimentos__visual-overlay"></div>
           </figure>
         </div>

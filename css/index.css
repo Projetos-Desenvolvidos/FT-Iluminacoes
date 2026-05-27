@@ -66,16 +66,6 @@
   }
 }
 
-.hero-studio.hero-paused,
-.hero-studio.hero-paused * {
-  animation-play-state: paused !important;
-}
-
-/* Hero sticky + faixa de scroll da luz branca; Sobre em fluxo normal abaixo */
-.hero-scroll-stage {
-  position: relative;
-}
-
 /* ─── Hero + refletor RGB (estilo referência) ─── */
 .hero-studio {
   --rgb-color: #1e3a8a;
@@ -699,6 +689,11 @@
   backface-visibility: hidden;
 }
 
+.about-section__card picture {
+  display: block;
+  width: 100%;
+}
+
 .about-section__card img {
   display: block;
   width: 100%;
@@ -740,18 +735,18 @@
 
   .about-section__showcase--static .about-section__gallery {
     margin-right: calc(50% - 50vw);
-    padding-right: calc(50vw - 50% + clamp(20px, 5vw, 28px));
+    padding-right: calc(50vw - 50% + clamp(24px, 6vw, 32px));
   }
 
   .about-section__showcase--scroll-driven .about-section__gallery-viewport,
   .ft-experiences-scroll--active .about-section__gallery-viewport {
     margin-right: calc(50% - 50vw);
-    padding-right: clamp(20px, 5vw, 28px);
+    padding-right: clamp(24px, 6vw, 32px);
   }
 
   .about-section__showcase--scroll-driven .about-section__gallery,
   .ft-experiences-scroll--active .about-section__gallery {
-    padding-right: calc(50vw - 50% + clamp(20px, 5vw, 28px));
+    padding-right: calc(50vw - 50% + clamp(24px, 6vw, 32px));
   }
 
   .about-section__card {
@@ -1894,6 +1889,12 @@ p {
   opacity: 1;
   visibility: visible;
   z-index: 1;
+}
+
+.depoimentos__visual picture {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .depoimentos__visual img {

@@ -568,8 +568,18 @@ svg {
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
 
+  .about-section__showcase--scroll-driven .about-section__gallery,
+  .ft-experiences-scroll--active .about-section__gallery,
+  .about-section__showcase--static .about-section__gallery {
+    scroll-padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+
   .about-section__card {
-    flex-basis: clamp(220px, 85vw, 320px);
+    flex-basis: min(320px, 85vw);
+  }
+
+  .about-section__card:last-child {
+    scroll-snap-align: end;
   }
 }
 

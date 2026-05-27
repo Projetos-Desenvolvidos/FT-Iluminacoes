@@ -26,13 +26,24 @@
   const SCRUB_SMOOTH = IS_MOBILE ? 0.8 : 1.35;
   const SCROLL_DISTANCE_MULTIPLIER = IS_MOBILE ? 1.05 : 1.2;
   const cards = gsap.utils.toArray('.about-section__card', gallery);
-  const images = cards.map((card) => card.querySelector('img')).filter(Boolean);
 
   function getScrollAmount() {
-    const maxScroll = Math.max(0, gallery.scrollWidth - viewport.clientWidth);
+    const viewportWidth = viewport.clientWidth;
+    const maxScroll = Math.max(0, gallery.scrollWidth - viewportWidth);
+
+    if (cards.length <= 1) {
+      return 0;
+    }
+
+    const last = cards[cards.length - 1];
+    const lastEnd = last.offsetLeft + last.offsetWidth - viewportWidth;
+
+    if (IS_MOBILE) {
+      return Math.min(maxScroll, Math.max(0, lastEnd));
+    }
 
     if (cards.length <= 2) {
-      return 0;
+      return maxScroll;
     }
 
     const secondLast = cards[cards.length - 2];
@@ -41,57 +52,11 @@
     return Math.min(maxScroll, Math.max(0, stopAt));
   }
 
-  function resetCardEffects() {
-    return;
-  }
-
-  function getScrollProgress() {
-    const amount = getScrollAmount();
-    if (amount <= 0) return 0;
-    return gsap.utils.clamp(0, 1, Math.abs(Number(gsap.getProperty(gallery, 'x')) || 0) / amount);
-  }
-
-  function applyCardVisuals(card, img, focus, reveal, direction) {
-    const easeOut = gsap.parseEase('power3.out');
-    const easeReveal = gsap.parseEase('expo.out');
-    const f = easeOut(focus);
-    const r = easeReveal(reveal);
-
-    const clipY = (1 - r) * 24;
-    const clipX = (1 - f) * 12;
-    const lift = (1 - f) * 32;
-    const rotateY = direction * (1 - f) * 14;
-    const imageScale = 1.22 - f * 0.22;
-    const cardScale = 0.86 + f * 0.14;
-    const brightness = 0.58 + f * 0.42;
-    const saturate = 0.72 + f * 0.28;
-
-    gsap.set(card, {
-      scale: cardScale,
-      opacity: 0.22 + f * 0.78,
-      zIndex: Math.round(f * 100),
-    });
-
-    gsap.set(img, {
-      scale: imageScale,
-      y: lift,
-      rotateY,
-      opacity: 0.5 + f * 0.5,
-      clipPath: `inset(${clipY}% ${clipX}% round 1px)`,
-      filter: `brightness(${brightness}) saturate(${saturate}) contrast(${0.92 + f * 0.08})`,
-    });
-  }
-
-  function updateCardEffects() {
-    return;
-  }
-
   function destroyTrack() {
     window.ftScrollPins?.kill(PIN_ID);
     trackTween?.kill();
     trackTween = null;
     gsap.set(gallery, { x: 0 });
-    resetCardEffects();
   }
 
   function announceReady() {
