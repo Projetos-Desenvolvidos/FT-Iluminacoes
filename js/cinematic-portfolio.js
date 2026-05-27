@@ -29,6 +29,8 @@
   const SLIDE_SCROLL_VH = 1;
   let portfolioTimeline = null;
   let hasAnnouncedReady = false;
+  let lastViewportWidth = window.innerWidth;
+  let lastViewportHeight = window.innerHeight;
 
   function frameLabel(index) {
     return `ftPortfolioFrame${String(index).padStart(2, '0')}`;
@@ -301,6 +303,20 @@
 
     let resizeTimer;
     window.addEventListener('resize', () => {
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      const widthStable = Math.abs(w - lastViewportWidth) < 2;
+      const heightDelta = Math.abs(h - lastViewportHeight);
+      const isIosToolbarResize =
+        (window.matchMedia('(pointer: coarse)').matches || /iPhone|iPad|iPod/i.test(navigator.userAgent)) &&
+        widthStable &&
+        heightDelta > 0 &&
+        heightDelta < 140;
+
+      lastViewportWidth = w;
+      lastViewportHeight = h;
+      if (isIosToolbarResize) return;
+
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         setSlideInitialState();

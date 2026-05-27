@@ -43,14 +43,15 @@
   function setupLenis() {
     if (typeof Lenis === 'undefined') return;
     const isMobile = isMobileRuntime();
+    window.__ftLowPerfMode = isMobile;
 
     const lenis = new Lenis({
-      duration: isMobile ? 0.78 : 1.05,
+      duration: isMobile ? 0.72 : 1.05,
       smoothWheel: true,
       smoothTouch: true,
       syncTouch: false,
-      wheelMultiplier: isMobile ? 0.82 : 0.88,
-      touchMultiplier: isMobile ? 0.78 : 0.9,
+      wheelMultiplier: isMobile ? 0.78 : 0.88,
+      touchMultiplier: isMobile ? 0.72 : 0.9,
       easing: (t) => 1 - Math.pow(1 - t, 3),
     });
 

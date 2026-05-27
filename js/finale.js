@@ -15,6 +15,12 @@
   const ctaGlow = section.querySelector('.finale__cta-glow');
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lowPerfMode =
+    Boolean(window.__ftLowPerfMode) ||
+    window.matchMedia('(max-width: 900px)').matches ||
+    window.matchMedia('(pointer: coarse)').matches;
+  let lastViewportWidth = window.innerWidth;
+  let lastViewportHeight = window.innerHeight;
 
   function revealStatic() {
     gsap.set([manifest, cta], { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' });
@@ -43,10 +49,10 @@
         id: 'ftFinaleClimax',
         trigger: section,
         start: 'top top',
-        end: () => `+=${Math.round(window.innerHeight * 1.35)}`,
+        end: () => `+=${Math.round(window.innerHeight * (lowPerfMode ? 1.05 : 1.35))}`,
         pin: true,
         pinSpacing: true,
-        scrub: 1.35,
+        scrub: lowPerfMode ? 0.85 : 1.35,
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onEnter: () => section.classList.add('finale--revealed'),
@@ -158,7 +164,29 @@
     window.addEventListener('ft:loader-complete', refresh, { once: true });
     window.addEventListener('ft:final-cta-ready', refresh, { once: true });
     window.addEventListener('ft:cinematic-portfolio-ready', refresh, { once: true });
-    window.addEventListener('resize', refresh, { passive: true });
+    let resizeTimer;
+    window.addEventListener(
+      'resize',
+      () => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const widthStable = Math.abs(w - lastViewportWidth) < 2;
+        const heightDelta = Math.abs(h - lastViewportHeight);
+        const isIosToolbarResize =
+          (window.matchMedia('(pointer: coarse)').matches || /iPhone|iPad|iPod/i.test(navigator.userAgent)) &&
+          widthStable &&
+          heightDelta > 0 &&
+          heightDelta < 140;
+
+        lastViewportWidth = w;
+        lastViewportHeight = h;
+        if (isIosToolbarResize) return;
+
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(refresh, 180);
+      },
+      { passive: true }
+    );
   }
 
   function init() {

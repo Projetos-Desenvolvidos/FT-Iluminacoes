@@ -20,6 +20,8 @@
   let trackTween = null;
   let resizeTimer = null;
   let hasAnnouncedReady = false;
+  let lastViewportWidth = window.innerWidth;
+  let lastViewportHeight = window.innerHeight;
   const IS_MOBILE = window.matchMedia('(max-width: 900px)').matches || window.matchMedia('(pointer: coarse)').matches;
   const SCRUB_SMOOTH = IS_MOBILE ? 0.8 : 1.35;
   const SCROLL_DISTANCE_MULTIPLIER = IS_MOBILE ? 1.05 : 1.2;
@@ -40,9 +42,7 @@
   }
 
   function resetCardEffects() {
-    if (IS_MOBILE) return;
-    gsap.set(cards, { clearProps: 'transform,opacity,zIndex' });
-    gsap.set(images, { clearProps: 'transform,opacity,clipPath,filter' });
+    return;
   }
 
   function getScrollProgress() {
@@ -83,80 +83,7 @@
   }
 
   function updateCardEffects() {
-    if (IS_MOBILE) return;
-    const viewportRect = viewport.getBoundingClientRect();
-    const focusX = viewportRect.left + viewportRect.width * 0.34;
-    const influence = viewportRect.width * 0.52;
-    const scrollProgress = getScrollProgress();
-    const introFocus = gsap.utils.clamp(0, 1, (0.48 - scrollProgress) / 0.48);
-    const introReveal = gsap.utils.clamp(0, 1, (0.55 - scrollProgress) / 0.55);
-    const finaleFocus = gsap.utils.clamp(0, 1, (scrollProgress - 0.52) / 0.48);
-    const finaleReveal = gsap.utils.clamp(0, 1, (scrollProgress - 0.45) / 0.55);
-
-    let introGroupFocus = 0;
-    if (cards.length >= 1) {
-      const first = cards[0];
-      const firstRect = first.getBoundingClientRect();
-      const firstCenter = firstRect.left + firstRect.width * 0.5;
-      const firstDistance = Math.abs(firstCenter - focusX);
-      const firstProgress = gsap.utils.clamp(0, 1, 1 - firstDistance / (influence * 1.15));
-      introGroupFocus = Math.max(introFocus, firstProgress);
-    }
-
-    let finaleGroupFocus = 0;
-    if (cards.length >= 2) {
-      const secondLast = cards[cards.length - 2];
-      const last = cards[cards.length - 1];
-      const groupRect = {
-        left: secondLast.getBoundingClientRect().left,
-        right: last.getBoundingClientRect().right,
-      };
-      const groupCenter = (groupRect.left + groupRect.right) * 0.5;
-      const groupDelta = groupCenter - focusX;
-      const groupDistance = Math.abs(groupDelta);
-      const groupInfluence = influence * 1.15;
-      const groupProgress = gsap.utils.clamp(0, 1, 1 - groupDistance / groupInfluence);
-      finaleGroupFocus = Math.max(finaleFocus, groupProgress);
-    }
-
-    cards.forEach((card, index) => {
-      const img = card.querySelector('img');
-      if (!img) return;
-
-      const isFirst = index === 0;
-      const isLastTwo = index >= cards.length - 2;
-      const rect = card.getBoundingClientRect();
-      const cardCenter = rect.left + rect.width * 0.5;
-      const delta = cardCenter - focusX;
-      const distance = Math.abs(delta);
-      const progress = gsap.utils.clamp(0, 1, 1 - distance / influence);
-      const direction = distance === 0 ? 0 : delta / distance;
-
-      let focus = progress;
-      let reveal = progress;
-
-      if (isFirst) {
-        focus = Math.max(focus, introGroupFocus, introFocus);
-        reveal = Math.max(reveal, introGroupFocus, introReveal);
-
-        if (scrollProgress <= 0.08) {
-          focus = 1;
-          reveal = 1;
-        }
-      }
-
-      if (isLastTwo) {
-        focus = Math.max(focus, finaleGroupFocus, finaleFocus);
-        reveal = Math.max(reveal, finaleGroupFocus, finaleReveal);
-
-        if (scrollProgress >= 0.92) {
-          focus = 1;
-          reveal = 1;
-        }
-      }
-
-      applyCardVisuals(card, img, focus, reveal, direction);
-    });
+    return;
   }
 
   function destroyTrack() {
@@ -202,12 +129,11 @@
         anticipatePin: 0,
         fastScrollEnd: true,
         refreshPriority: 10,
-        onUpdate: IS_MOBILE ? undefined : updateCardEffects,
-        onLeave: IS_MOBILE ? undefined : () => resetCardEffects(),
+        onUpdate: undefined,
+        onLeave: undefined,
       },
     });
 
-    if (!IS_MOBILE) updateCardEffects();
     announceReady();
   }
 
@@ -230,6 +156,20 @@
     window.addEventListener(
       'resize',
       () => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const widthStable = Math.abs(w - lastViewportWidth) < 2;
+        const heightDelta = Math.abs(h - lastViewportHeight);
+        const isIosToolbarResize =
+          (window.matchMedia('(pointer: coarse)').matches || /iPhone|iPad|iPod/i.test(navigator.userAgent)) &&
+          widthStable &&
+          heightDelta > 0 &&
+          heightDelta < 140;
+
+        lastViewportWidth = w;
+        lastViewportHeight = h;
+        if (isIosToolbarResize) return;
+
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(refreshGallery, 150);
       },

@@ -2841,3 +2841,22 @@ p {
     will-change: auto;
   }
 }
+
+/* iOS: evita jank quando a barra do navegador recolhe/expande */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 900px) {
+    .hero-studio,
+    .about-section__showcase--scroll-driven,
+    .ft-experiences-scroll--active,
+    .cinematic-portfolio,
+    .cinematic-portfolio__pin,
+    .final-cta,
+    .final-cta__inner,
+    .finale,
+    .finale__stage {
+      height: 100svh;
+      min-height: 100svh;
+      max-height: none;
+    }
+  }
+}

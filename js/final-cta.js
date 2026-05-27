@@ -15,6 +15,12 @@
   if (!track1 || !track2 || !track3) return;
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const lowPerfMode =
+    Boolean(window.__ftLowPerfMode) ||
+    window.matchMedia('(max-width: 900px)').matches ||
+    window.matchMedia('(pointer: coarse)').matches;
+  let lastViewportWidth = window.innerWidth;
+  let lastViewportHeight = window.innerHeight;
 
   function moveAmount() {
     const vw = window.innerWidth;
@@ -44,7 +50,7 @@
       gsap.set(foreground, { opacity: 0, y: 24 });
     }
 
-    const amount = moveAmount();
+    const amount = moveAmount() * (lowPerfMode ? 0.75 : 1);
     gsap.set(track1, { x: amount * 0.12 });
     gsap.set(track2, { x: -amount * 0.12 });
     gsap.set(track3, { x: amount * 0.1 });
@@ -59,7 +65,7 @@
         end: () => `+=${Math.round(window.innerHeight * 1.2)}`,
         pin: true,
         pinSpacing: true,
-        scrub: 1.1,
+        scrub: lowPerfMode ? 0.7 : 1.1,
         anticipatePin: 1,
         invalidateOnRefresh: true,
       },
@@ -70,8 +76,8 @@
       .to(track3, { x: -amount * 0.92, ease: 'none', duration: 1 }, 0)
       .to(rowsMuted, { opacity: 0.32, ease: 'none', duration: 1 }, 0)
       .to(rowAccent, { opacity: 1, ease: 'none', duration: 1 }, 0)
-      .to(rowAccent, { y: -amount * 0.05, ease: 'none', duration: 1 }, 0)
-      .to(rowsMuted, { y: amount * 0.03, ease: 'none', duration: 1 }, 0);
+      .to(rowAccent, { y: -amount * (lowPerfMode ? 0.02 : 0.05), ease: 'none', duration: 1 }, 0)
+      .to(rowsMuted, { y: amount * (lowPerfMode ? 0.015 : 0.03), ease: 'none', duration: 1 }, 0);
 
     if (foreground) {
       tl.to(
@@ -95,7 +101,29 @@
     window.dispatchEvent(new CustomEvent('ft:final-cta-ready'));
     window.addEventListener('ft:loader-complete', refresh, { once: true });
     window.addEventListener('ft:cinematic-portfolio-ready', refresh, { once: true });
-    window.addEventListener('resize', refresh, { passive: true });
+    let resizeTimer;
+    window.addEventListener(
+      'resize',
+      () => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        const widthStable = Math.abs(w - lastViewportWidth) < 2;
+        const heightDelta = Math.abs(h - lastViewportHeight);
+        const isIosToolbarResize =
+          (window.matchMedia('(pointer: coarse)').matches || /iPhone|iPad|iPod/i.test(navigator.userAgent)) &&
+          widthStable &&
+          heightDelta > 0 &&
+          heightDelta < 140;
+
+        lastViewportWidth = w;
+        lastViewportHeight = h;
+        if (isIosToolbarResize) return;
+
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(refresh, 180);
+      },
+      { passive: true }
+    );
   }
 
   function init() {
