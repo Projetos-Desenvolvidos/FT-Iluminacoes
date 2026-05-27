@@ -1,5 +1,5 @@
 /**
- * Sobre — reveal do texto (palavra a palavra no desktop; fade suave no mobile).
+ * Sobre — palavras surgindo (GSAP no desktop; CSS no mobile para fluidez).
  */
 (function () {
   const intro = document.querySelector('.about-section__intro');
@@ -8,11 +8,11 @@
 
   if (!intro || !lead || typeof gsap === 'undefined') return;
 
-  const WORD_STAGGER_DESKTOP = 0.038;
   let words = [];
   let revealTl = null;
   let scrollTrigger = null;
   let started = false;
+  let playTimer = null;
 
   function isMobileRuntime() {
     return (
@@ -46,6 +46,7 @@
         span.className = 'about-section__word';
         span.textContent = chunk;
         span.setAttribute('aria-hidden', 'true');
+        span.style.setProperty('--word-i', String(collected.length));
         parent.insertBefore(span, textNode);
         collected.push(span);
       });
@@ -57,27 +58,34 @@
     return collected;
   }
 
-  function revealAll() {
-    if (label) gsap.set(label, { opacity: 1, y: 0, clearProps: 'transform' });
-    if (words.length) {
-      gsap.set(words, { opacity: 1, y: 0, clearProps: 'transform' });
-    } else {
-      gsap.set(lead, { opacity: 1, clearProps: 'opacity' });
-    }
+  function finishReveal() {
     intro.classList.add('about-section__intro--revealed');
+    intro.classList.remove('about-section__intro--playing');
+    if (label) gsap.set(label, { clearProps: 'transform,opacity' });
+    if (words.length) gsap.set(words, { clearProps: 'transform,opacity' });
+  }
+
+  function revealAll() {
+    clearTimeout(playTimer);
+    killReveal();
+    if (label) gsap.set(label, { opacity: 1, y: 0 });
+    gsap.set(words, { opacity: 1, y: 0 });
+    finishReveal();
   }
 
   function killReveal() {
     revealTl?.kill();
     revealTl = null;
+    clearTimeout(playTimer);
+    intro.classList.remove('about-section__intro--playing');
   }
 
-  function resetDesktopReveal() {
+  function resetReveal() {
     killReveal();
     started = false;
     intro.classList.remove('about-section__intro--revealed');
     if (label) gsap.set(label, { opacity: 0, y: 10 });
-    if (words.length) gsap.set(words, { opacity: 0, y: 10 });
+    gsap.set(words, { opacity: 0, y: 10 });
   }
 
   function playDesktopReveal() {
@@ -86,11 +94,7 @@
 
     revealTl = gsap.timeline({
       defaults: { ease: 'power2.out' },
-      onComplete: () => {
-        intro.classList.add('about-section__intro--revealed');
-        if (label) gsap.set(label, { clearProps: 'transform' });
-        gsap.set(words, { clearProps: 'transform' });
-      },
+      onComplete: finishReveal,
     });
 
     if (label) {
@@ -104,7 +108,7 @@
         opacity: 1,
         y: 0,
         duration: 0.32,
-        stagger: WORD_STAGGER_DESKTOP,
+        stagger: 0.038,
       },
       label ? '-=0.12' : 0
     );
@@ -114,76 +118,77 @@
     if (started) return;
     started = true;
 
-    revealTl = gsap.timeline({
-      defaults: { ease: 'power2.out' },
-      onComplete: () => {
-        intro.classList.add('about-section__intro--revealed');
-        if (label) gsap.set(label, { clearProps: 'opacity' });
-        gsap.set(lead, { clearProps: 'opacity' });
-      },
-    });
+    if (label) gsap.set(label, { clearProps: 'all' });
+    gsap.set(words, { clearProps: 'all' });
+    intro.classList.add('about-section__intro--playing');
 
-    if (label) {
-      revealTl.fromTo(label, { opacity: 0 }, { opacity: 1, duration: 0.5 });
-    }
+    const wordDelay = 46;
+    const labelMs = 520;
+    const wordsMs = 80 + words.length * wordDelay + 420;
 
-    revealTl.fromTo(lead, { opacity: 0 }, { opacity: 1, duration: 0.55 }, label ? '-=0.28' : 0);
+    playTimer = setTimeout(finishReveal, Math.max(labelMs, wordsMs));
   }
 
-  function bindScrollTrigger(desktop) {
+  function playReveal() {
+    requestAnimationFrame(() => {
+      if (isMobileRuntime()) playMobileReveal();
+      else playDesktopReveal();
+    });
+  }
+
+  function setupWords() {
+    if (!intro.classList.contains('about-section__intro--words')) {
+      words = wrapWords(lead);
+      intro.classList.add('about-section__intro--words');
+    } else if (!words.length) {
+      words = Array.from(lead.querySelectorAll('.about-section__word'));
+    }
+
+    if (isMobileRuntime()) {
+      if (label) gsap.set(label, { opacity: 0, clearProps: 'transform' });
+      gsap.set(words, { clearProps: 'all' });
+      return;
+    }
+
+    if (label) gsap.set(label, { opacity: 0, y: 10 });
+    gsap.set(words, { opacity: 0, y: 10 });
+  }
+
+  function bindScrollTrigger() {
+    const mobile = isMobileRuntime();
     scrollTrigger?.kill();
     scrollTrigger = ScrollTrigger.create({
       id: 'aboutSectionReveal',
       trigger: intro,
-      start: desktop ? 'top 78%' : 'top 88%',
-      once: !desktop,
-      onEnter: () => {
-        requestAnimationFrame(() => {
-          if (desktop) playDesktopReveal();
-          else playMobileReveal();
-        });
-      },
-      onLeaveBack: desktop
-        ? () => {
-            resetDesktopReveal();
-          }
-        : undefined,
+      start: mobile ? 'top 86%' : 'top 78%',
+      once: mobile,
+      onEnter: playReveal,
+      onLeaveBack: mobile
+        ? undefined
+        : () => {
+            resetReveal();
+          },
     });
-  }
-
-  function initDesktop() {
-    intro.classList.add('about-section__intro--words');
-    words = wrapWords(lead);
-    if (label) gsap.set(label, { opacity: 0, y: 10 });
-    gsap.set(words, { opacity: 0, y: 10 });
-    bindScrollTrigger(true);
-  }
-
-  function initMobile() {
-    intro.classList.remove('about-section__intro--words');
-    if (label) gsap.set(label, { opacity: 0 });
-    gsap.set(lead, { opacity: 0 });
-    bindScrollTrigger(false);
   }
 
   function init() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      words = wrapWords(lead);
+      intro.classList.add('about-section__intro--words');
       revealAll();
       return;
     }
 
     if (typeof ScrollTrigger === 'undefined') {
+      words = wrapWords(lead);
+      intro.classList.add('about-section__intro--words');
       revealAll();
       return;
     }
 
     gsap.registerPlugin(ScrollTrigger);
-
-    if (isMobileRuntime()) {
-      initMobile();
-    } else {
-      initDesktop();
-    }
+    setupWords();
+    bindScrollTrigger();
 
     let resizeTimer;
     window.addEventListener(
@@ -191,26 +196,12 @@
       () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
-          const mobile = isMobileRuntime();
-          const hasWords = intro.classList.contains('about-section__intro--words');
-          if ((!mobile && hasWords) || (mobile && !hasWords)) return;
-
           killReveal();
           scrollTrigger?.kill();
           scrollTrigger = null;
           started = false;
-
-          if (mobile) {
-            if (hasWords && lead.querySelector('.about-section__word')) {
-              const text = lead.getAttribute('aria-label') || lead.textContent;
-              lead.textContent = text;
-              lead.removeAttribute('aria-label');
-            }
-            initMobile();
-          } else {
-            initDesktop();
-          }
-
+          setupWords();
+          bindScrollTrigger();
           ScrollTrigger.refresh();
         }, 200);
       },
