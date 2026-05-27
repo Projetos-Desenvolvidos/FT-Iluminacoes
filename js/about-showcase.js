@@ -1,5 +1,5 @@
 /**
- * Experiências — galeria horizontal com pin exclusivo (ftExperiences*)
+ * Experiências — desktop: galeria horizontal com pin; mobile: carrossel com snap (modo leve).
  */
 (function () {
   const NS = window.FT_SCROLL?.experiences;
@@ -22,10 +22,18 @@
   let hasAnnouncedReady = false;
   let lastViewportWidth = window.innerWidth;
   let lastViewportHeight = window.innerHeight;
-  const IS_MOBILE = window.matchMedia('(max-width: 900px)').matches || window.matchMedia('(pointer: coarse)').matches;
-  const SCRUB_SMOOTH = IS_MOBILE ? 0.8 : 1.35;
-  const SCROLL_DISTANCE_MULTIPLIER = IS_MOBILE ? 1.05 : 1.2;
   const cards = gsap.utils.toArray('.about-section__card', gallery);
+
+  function isMobileRuntime() {
+    return (
+      window.matchMedia('(max-width: 900px)').matches ||
+      window.matchMedia('(pointer: coarse)').matches
+    );
+  }
+
+  function prefersStaticGallery() {
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches || isMobileRuntime();
+  }
 
   function getScrollAmount() {
     const viewportWidth = viewport.clientWidth;
@@ -33,13 +41,6 @@
 
     if (cards.length <= 1) {
       return 0;
-    }
-
-    const last = cards[cards.length - 1];
-    const lastEnd = last.offsetLeft + last.offsetWidth - viewportWidth;
-
-    if (IS_MOBILE) {
-      return Math.min(maxScroll, Math.max(0, lastEnd));
     }
 
     if (cards.length <= 2) {
@@ -86,68 +87,77 @@
         id: PIN_ID,
         trigger: showcase,
         start: 'top top',
-        end: () => `+=${getScrollAmount() * SCROLL_DISTANCE_MULTIPLIER}`,
+        end: () => `+=${getScrollAmount() * 1.2}`,
         pin: showcase,
         pinSpacing: true,
-        scrub: SCRUB_SMOOTH,
+        scrub: 1.35,
         invalidateOnRefresh: true,
         anticipatePin: 0,
         fastScrollEnd: true,
         refreshPriority: 10,
-        onUpdate: undefined,
-        onLeave: undefined,
       },
     });
 
     announceReady();
   }
 
-  function refreshGallery() {
+  function enableStaticGallery() {
+    showcase.classList.remove(ACTIVE_CLASS, 'about-section__showcase--scroll-driven');
+    showcase.classList.add(STATIC_CLASS, 'about-section__showcase--static');
+    destroyTrack();
+    announceReady();
+  }
+
+  function enableScrollGallery() {
+    showcase.classList.remove(STATIC_CLASS, 'about-section__showcase--static');
+    showcase.classList.add(ACTIVE_CLASS, 'about-section__showcase--scroll-driven');
     buildExperiencesScroll();
+  }
+
+  function applyGalleryMode() {
+    if (prefersStaticGallery()) {
+      enableStaticGallery();
+    } else {
+      enableScrollGallery();
+    }
+  }
+
+  function onResize() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const widthStable = Math.abs(w - lastViewportWidth) < 2;
+    const heightDelta = Math.abs(h - lastViewportHeight);
+    const isIosToolbarResize =
+      (window.matchMedia('(pointer: coarse)').matches || /iPhone|iPad|iPod/i.test(navigator.userAgent)) &&
+      widthStable &&
+      heightDelta > 0 &&
+      heightDelta < 140;
+
+    lastViewportWidth = w;
+    lastViewportHeight = h;
+    if (isIosToolbarResize) return;
+
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(applyGalleryMode, 150);
   }
 
   function init() {
     gsap.registerPlugin(ScrollTrigger);
+    applyGalleryMode();
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      showcase.classList.add(STATIC_CLASS, 'about-section__showcase--static');
-      announceReady();
-      return;
-    }
-
-    showcase.classList.add(ACTIVE_CLASS, 'about-section__showcase--scroll-driven');
-    buildExperiencesScroll();
-
-    window.addEventListener(
-      'resize',
-      () => {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        const widthStable = Math.abs(w - lastViewportWidth) < 2;
-        const heightDelta = Math.abs(h - lastViewportHeight);
-        const isIosToolbarResize =
-          (window.matchMedia('(pointer: coarse)').matches || /iPhone|iPad|iPod/i.test(navigator.userAgent)) &&
-          widthStable &&
-          heightDelta > 0 &&
-          heightDelta < 140;
-
-        lastViewportWidth = w;
-        lastViewportHeight = h;
-        if (isIosToolbarResize) return;
-
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(refreshGallery, 150);
-      },
-      { passive: true }
-    );
+    window.addEventListener('resize', onResize, { passive: true });
+    window.addEventListener('ft:scroll-mode-changed', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(applyGalleryMode, 80);
+    });
 
     gallery.querySelectorAll('img').forEach((img) => {
       if (img.complete) return;
-      img.addEventListener('load', refreshGallery, { once: true });
+      img.addEventListener('load', applyGalleryMode, { once: true });
     });
 
     if (document.fonts?.ready) {
-      document.fonts.ready.then(refreshGallery);
+      document.fonts.ready.then(applyGalleryMode);
     }
   }
 

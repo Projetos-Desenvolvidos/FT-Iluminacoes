@@ -62,7 +62,7 @@
         id: 'ftFinalCtaMotion',
         trigger: section,
         start: 'top top',
-        end: () => `+=${Math.round(window.innerHeight * 1.2)}`,
+        end: () => `+=${Math.round(window.innerHeight * (lowPerfMode ? 0.9 : 1.2))}`,
         pin: true,
         pinSpacing: true,
         scrub: lowPerfMode ? 0.7 : 1.1,

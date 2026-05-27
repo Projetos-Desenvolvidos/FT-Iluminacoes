@@ -509,6 +509,26 @@ svg {
   }
 }
 
+/* ─── Modo leve mobile (scroll nativo + galeria snap) ─── */
+@media (max-width: 900px) {
+  html.ft-lite-mobile .about-section__showcase--static {
+    min-height: auto;
+  }
+
+  html.ft-lite-mobile .about-section__showcase--static .about-section__gallery {
+    scroll-snap-type: x mandatory;
+  }
+
+  html.ft-lite-mobile .about-section__showcase--static .about-section__card {
+    scroll-snap-align: center;
+  }
+
+  html.ft-lite-mobile .cinematic-portfolio--active,
+  html.ft-lite-mobile .ft-portfolio-cinematic-scroll--active {
+    touch-action: pan-y;
+  }
+}
+
 /* ─── Sobre / experiências ─── */
 @media (max-width: 1024px) {
   .about-section__title-line {

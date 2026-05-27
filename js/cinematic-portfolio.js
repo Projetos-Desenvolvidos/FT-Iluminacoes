@@ -25,12 +25,32 @@
 
   if (!slides.length || !pin) return;
 
-  const SCRUB = 1.35;
-  const SLIDE_SCROLL_VH = 1;
   let portfolioTimeline = null;
   let hasAnnouncedReady = false;
   let lastViewportWidth = window.innerWidth;
   let lastViewportHeight = window.innerHeight;
+
+  function isMobileRuntime() {
+    return (
+      window.matchMedia('(max-width: 900px)').matches ||
+      window.matchMedia('(pointer: coarse)').matches
+    );
+  }
+
+  function getScrub() {
+    return isMobileRuntime() ? 0.95 : 1.35;
+  }
+
+  function getSlideScrollVh() {
+    return isMobileRuntime() ? 0.55 : 1;
+  }
+
+  function getBlurAmount(kind) {
+    if (!isMobileRuntime()) {
+      return kind === 'in' ? 14 : 12;
+    }
+    return kind === 'in' ? 7 : 6;
+  }
 
   function frameLabel(index) {
     return `ftPortfolioFrame${String(index).padStart(2, '0')}`;
@@ -64,7 +84,7 @@
       } else {
         gsap.set(slide, { autoAlpha: 0, visibility: 'hidden', zIndex: 1 });
         if (media) {
-          gsap.set(media, { opacity: 1, scale: 1.12, y: 40, filter: 'blur(12px) brightness(0.65)' });
+          gsap.set(media, { opacity: 1, scale: 1.12, y: 40, filter: `blur(${getBlurAmount('out')}px) brightness(0.65)` });
         }
         gsap.set(content, { autoAlpha: 0, y: 32 });
       }
@@ -130,10 +150,10 @@
         id: PIN_ID,
         trigger: section,
         start: 'top top',
-        end: () => `+=${window.innerHeight * (slides.length - 1) * SLIDE_SCROLL_VH}`,
+        end: () => `+=${window.innerHeight * (slides.length - 1) * getSlideScrollVh()}`,
         pin: section,
         pinSpacing: true,
-        scrub: SCRUB,
+        scrub: getScrub(),
         anticipatePin: 0,
         fastScrollEnd: true,
         invalidateOnRefresh: true,
@@ -176,7 +196,7 @@
         {
           scale: 1.06,
           y: -24,
-          filter: 'blur(10px) brightness(0.55)',
+          filter: `blur(${getBlurAmount('out')}px) brightness(0.55)`,
           duration: 0.9,
           ease: 'power2.inOut',
         },
@@ -205,7 +225,7 @@
         {
           scale: 1.14,
           y: 56,
-          filter: 'blur(14px) brightness(0.6)',
+          filter: `blur(${getBlurAmount('in')}px) brightness(0.6)`,
         },
         {
           scale: 1,
@@ -319,9 +339,22 @@
 
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          initStatic();
+          return;
+        }
         setSlideInitialState();
         buildPortfolioScroll();
       }, 200);
+    });
+
+    window.addEventListener('ft:scroll-mode-changed', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (section.classList.contains(STATIC_CLASS)) return;
+        setSlideInitialState();
+        buildPortfolioScroll();
+      }, 80);
     });
   }
 
