@@ -1082,7 +1082,6 @@ p {
 }
 
 .impact-section__title {
-  left: 0px;
   margin: 0;
   font-size: clamp(2rem, 5.8vw, 6.875rem);
   font-weight: 400;
