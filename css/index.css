@@ -527,15 +527,24 @@
 
 .about-section__word {
   display: inline;
-  will-change: opacity, transform;
 }
 
 .about-section__intro:not(.about-section__intro--revealed) .about-section__label {
   opacity: 0;
 }
 
-.about-section__intro:not(.about-section__intro--revealed) .about-section__word {
+.about-section__intro--words:not(.about-section__intro--revealed) .about-section__word {
   opacity: 0;
+}
+
+.about-section__intro:not(.about-section__intro--words):not(.about-section__intro--revealed) .about-section__lead {
+  opacity: 0;
+}
+
+.about-section__intro.about-section__intro--revealed .about-section__label,
+.about-section__intro.about-section__intro--revealed .about-section__lead,
+.about-section__intro.about-section__intro--revealed .about-section__word {
+  opacity: 1;
 }
 
 .about-section__showcase {
