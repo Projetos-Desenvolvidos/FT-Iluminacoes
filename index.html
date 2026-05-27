@@ -1,147 +1,605 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="ft-is-loading">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home - F&T Iluminações</title>
   <link rel="stylesheet" href="./css/global.css">
   <link rel="stylesheet" href="./css/index.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/responsive.css">
+  <link rel="stylesheet" href="./css/loader.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" type="image/x-icon" href="assets/Icon.ico">
   <script src="https://kit.fontawesome.com/4e6a5b5f7d.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="page-home">
 
-  <!-- HEADER -->
-    <header class="navbar">
-        <div class="logo">
-            <a href="index.html"><img src="./assets/F&T 2.png" alt="Logo F&T Iluminações"></a>
+  <div class="ft-loader" id="ft-loader" role="status" aria-live="polite" aria-label="Carregando site">
+    <div class="ft-loader__ambient" aria-hidden="true"></div>
+    <div class="ft-loader__scanlines" aria-hidden="true"></div>
+    <div class="ft-loader__beam" aria-hidden="true"></div>
+    <div class="ft-loader__inner">
+      <div class="ft-loader__logo">
+        <img class="ft-loader__logo-ghost" src="./assets/F&T 2.png" alt="" width="160" height="48" decoding="async">
+        <div class="ft-loader__logo-fill" id="ft-loader-logo-fill">
+          <img class="ft-loader__logo-color" src="./assets/F&T 2.png" alt="F&amp;T Iluminações" width="160" height="48" decoding="async">
+        </div>
+      </div>
+      <div class="ft-loader__progress">
+        <div class="ft-loader__progress-track">
+          <span class="ft-loader__progress-bar" id="ft-loader-progress-bar"></span>
+        </div>
+      </div>
+      <span class="ft-loader__percent" id="ft-loader-percent">0%</span>
+    </div>
+  </div>
+
+  <div class="site-brand-fixed" id="site-brand-fixed" aria-label="Marca F&amp;T Iluminações">
+    <a href="index.html" class="hero-brand" aria-label="F&amp;T Iluminações — Início">
+      <span class="hero-brand-ft">F&amp;T</span>
+      <span class="hero-brand-name">Iluminações</span>
+    </a>
+    <a href="index.html" class="hero-logo-mark" aria-label="F&amp;T Iluminações">
+      <img src="./assets/F&T 2.png" alt="F&amp;T Iluminações">
+    </a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero-studio" id="hero" aria-label="Destaque principal">
+    <div class="hero-ambient" aria-hidden="true"></div>
+    <div class="hero-scanlines" aria-hidden="true"></div>
+
+    <nav class="hero-nav hero-nav--hero" aria-label="Serviços">
+      <span>Iluminação</span>
+      <span class="hero-nav-sep" aria-hidden="true">•</span>
+      <span>Som</span>
+      <span class="hero-nav-sep" aria-hidden="true">•</span>
+      <span>Arco de LED</span>
+      <span class="hero-nav-sep" aria-hidden="true">•</span>
+      <span>Estrutura</span>
+      <span class="hero-nav-sep" aria-hidden="true">•</span>
+      <span>Gerador</span>
+    </nav>
+
+    <div class="hero-inner">
+      <div class="hero-block">
+        <div class="hero-text-wash" aria-hidden="true"></div>
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <span class="hero-title-line">Iluminações que transformam</span><br class="hero-title-break" aria-hidden="true">
+            <span class="hero-title-line">eventos em experiencia</span>
+          </h1>
+          <p class="hero-subtitle">
+            Som, luz, LED e estrutura completa para shows, festas e corporativos. Mais de 20 anos criando ambientes memoráveis em Goiânia.
+          </p>
         </div>
 
-        <nav>
-            <ul class="nav-links">
-                <li><a href="./paginas/sobre.html">A F&T Iluminações</a></li>
-                <li><a href="./paginas/servicos.html">Serviços</a></li>
-                <li><a href="./paginas/eventos.html">Eventos</a></li>
-                <li><a href="./paginas/contatos.html">Contatos</a></li>
-                <li>
-                    <a href="https://wa.me/5562992352370" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+        <div class="hero-cta hero-cta-platform">
+          <a href="https://wa.me/5562992352370?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." class="btn-hero btn-hero--primary" target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+          <a href="https://wa.me/5562992352370?text=Ol%C3%A1%21" class="btn-hero btn-hero--secondary hero-cta__wa" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+          <a href="#portfolio" class="btn-hero btn-hero--secondary hero-cta__portfolio">Ver portfólio</a>
+        </div>
 
-        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-    </header>
-
-  <!-- Banner -->
-  <section class="hero">
-    <div class="hero-content animate-fade">
-      <h1><span class="highlight">Eventos</span> que Inspiram e <span class="highlight">Conectam</span><br><span class="highlight">Paixão</span> por <span class="highlight">Realizar</span></h1>
-      <a href="https://wa.me/5562992352370" class="btn-primary">Agendar evento</a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="stat-card animate-up">
-        <h2><span class="highlight-red">1K+</span></h2>
-        <p>Eventos Realizados</p>
+        <div class="light-bar-scene" id="lightBarScene">
+          <div class="light-bar-fx" aria-hidden="true">
+            <div class="light-bar-beam"></div>
+            <div class="light-bar-glow-up"></div>
+            <div class="light-bar-glow-down"></div>
+            <div class="light-bar"></div>
+          </div>
+        </div>
       </div>
-      <div class="stat-card animate-up">
-        <h2><span class="highlight-roxo">50K+</span></h2>
-        <p>Pessoas impactadas</p>
-      </div>
-      <div class="stat-card animate-up">
-        <h2><span class="highlight-pink">98%</span></h2>
-        <p>Satisfação</p>
+
+      <div class="hero-kpis hero-kpis-platform" aria-label="Indicadores da empresa">
+        <div class="hero-kpi">
+          <strong>1K+</strong>
+          <span>Eventos realizados</span>
+        </div>
+        <div class="hero-kpi">
+          <strong>50K+</strong>
+          <span>Pessoas impactadas</span>
+        </div>
+        <div class="hero-kpi">
+          <strong>98%</strong>
+          <span>Satisfação dos clientes</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- POR QUE ESCOLHER -->
-  <section class="why-us">
-    <h2>Por que <span class="highlight-orange">Escolher</span> a <span class="highlight-orange">F&T</span> Iluminações?</h2>
-    <div class="features">
-      <div class="feature-card animate-up">
-        <img src="./assets/Vector.png" alt="Emoji de Sorriso">
-        <h3>Seu evento com a sua cara</h3>
-        <p>Aqui fazemos de tudo para satisfazer nossos clientes.</p>
-      </div>
-      <div class="feature-card animate-up">
-        <img src="./assets/pngegg (1) 1.png" alt="Prancheta">
-        <h3>Planejamento Completo</h3>
-        <p>Cuidamos de cada detalhe para que seu evento seja perfeito.</p>
-      </div>
-      <div class="feature-card animate-up">
-        <img src="./assets/Vector (1).png" alt="Estrela">
-        <h3>Experiências Únicas</h3>
-        <p>Criamos momentos inesquecíveis que marcam positivamente.</p>
-      </div>
+  <section class="about-section" id="about" aria-label="Sobre a F&amp;T Iluminações">
+    <div class="about-section__intro">
+      <p class="about-section__label">Sobre a F&amp;T Iluminações</p>
+      <p class="about-section__lead">
+        Com mais de 20 anos de experiência, a F&amp;T Iluminações transforma eventos com estrutura completa de som, luz, painéis de LED e palcos, combinando paixão e alta qualidade.
+      </p>
     </div>
-  </section>
 
-  <!-- NOSSOS EVENTOS -->
-  <section class="events">
-    <h2>Nossos eventos</h2>
-    <div class="event-gallery">
-      <img src="./assets/image 12.png" alt="Evento 1">
-      <img src="./assets/image 13.png" alt="Evento 2">
-      <img src="./assets/image 14.png" alt="Evento 3">
-      <img src="./assets/image 15.png" alt="Evento 4">
-    </div>
-    <a href="./paginas/eventos.html" class="btn-secondary">Saiba mais</a>
-  </section>
+    <section class="impact-section" id="services" aria-labelledby="impact-section-title">
+      <div class="impact-section__inner">
+        <div class="impact-section__layout">
+          <div class="impact-section__header">
+            <h2 class="impact-section__title" id="impact-section-title">
+              <span class="impact-section__line impact-section__line--desk">Eventos que Inspiram e</span>
+              <span class="impact-section__line impact-section__line--desk">conectam</span>
+              <span class="impact-section__line impact-section__line--mob">Eventos que inspiram</span>
+              <span class="impact-section__line impact-section__line--mob">E conectam</span>
+            </h2>
 
-    <!-- CONTATO -->
-    <section class="contact">
-    <h2>Fale Conosco!</h2>
-    <div class="contact-box">
-        <ul>
-        <li>
-            <a href="mailto:ftiluminacoes2005@gmail.com" target="_blank">
-            <i class="fas fa-envelope"></i>E-mail: ftiluminacoes2005@gmail.com
-            </a>
-        </li>
-        <li>
-            <a href="https://wa.me/5562992352370" target="_blank">
-            <i class="fab fa-whatsapp"></i>WhatsApp: (62) 99235-2370
-            </a>
-        </li>
-        <li>
-            <a href="https://facebook.com/fetiluminacoes" target="_blank">
-            <i class="fab fa-facebook"></i>Facebook: facebook.com/fetiluminacoes
-            </a>
-        </li>
-        <li>
-            <a href="https://instagram.com/ft_iluminacoes" target="_blank">
-            <i class="fab fa-instagram"></i>Instagram: @ft_iluminacoes
-            </a>
-        </li>
-        <li>
-            <a href="tel:+5562992352370">
-            <i class="fas fa-phone"></i>Telefone: (62) 99235-2370
-            </a>
-        </li>
-        </ul>
-    </div>
+            <div class="hero-cta about-section__cta impact-section__cta">
+              <a href="https://wa.me/5562992352370?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." class="btn-hero btn-hero--primary" target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+              <a href="https://wa.me/5562992352370?text=Ol%C3%A1%21" class="btn-hero btn-hero--secondary" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="impact-section__cards">
+            <article class="impact-card" data-value="1000" data-suffix="+">
+              <span class="impact-card__badge impact-card__badge--green" aria-hidden="true"><i class="fa-solid fa-bolt"></i></span>
+              <span class="impact-card__icon" aria-hidden="true"><i class="fa-solid fa-calendar-check"></i></span>
+              <strong class="impact-card__stat"><span class="impact-card__number">0</span><span class="impact-card__suffix">+</span></strong>
+              <p class="impact-card__label">Eventos realizados</p>
+              <p class="impact-card__text">Casamentos, corporativos e festas com estrutura completa de som, luz e palco.</p>
+            </article>
+
+            <article class="impact-card" data-value="50000" data-suffix="+">
+              <span class="impact-card__badge impact-card__badge--red" aria-hidden="true"><i class="fa-solid fa-users"></i></span>
+              <span class="impact-card__icon" aria-hidden="true"><i class="fa-solid fa-people-group"></i></span>
+              <strong class="impact-card__stat"><span class="impact-card__number">0</span><span class="impact-card__suffix">+</span></strong>
+              <p class="impact-card__label">Pessoas impactadas</p>
+              <p class="impact-card__text">Experiências que emocionam e conectam milhares de pessoas a cada evento.</p>
+            </article>
+
+            <article class="impact-card" data-value="98" data-suffix="%">
+              <span class="impact-card__badge impact-card__badge--purple" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
+              <span class="impact-card__icon" aria-hidden="true"><i class="fa-solid fa-heart"></i></span>
+              <strong class="impact-card__stat"><span class="impact-card__number">0</span><span class="impact-card__suffix">%</span></strong>
+              <p class="impact-card__label">Satisfação dos clientes</p>
+              <p class="impact-card__text">Equipe dedicada e alta qualidade técnica do planejamento à desmontagem.</p>
+            </article>
+          </div>
+        </div>
+      </div>
     </section>
+  </section>
 
+  <section class="about-section__showcase" id="experiences" data-ft-scroll="experiences" aria-label="Experiências visuais">
+      <div class="about-section__manifesto-block">
+        <h2 class="about-section__manifesto" aria-label="Criamos experiências visuais">
+          <span class="about-section__title-line about-section__title-line--desk">Criamos experiências</span>
+          <span class="about-section__title-line about-section__title-line--desk">visuais</span>
+          <span class="about-section__title-line about-section__title-line--mob">Criamos experiências</span>
+          <span class="about-section__title-line about-section__title-line--mob">visuais</span>
+        </h2>
 
-  <!-- LOCALIZAÇÃO -->
-  <section class="location">
-    <h2>Onde nos encontrar</h2>
-    <div class="logo-container">
-        <img src="./assets/F&T 2.png" alt="Mapa Localização">
+        <div class="hero-cta about-section__cta">
+          <a href="https://wa.me/5562992352370?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." class="btn-hero btn-hero--primary" target="_blank" rel="noopener noreferrer">Solicitar orçamento</a>
+          <a href="https://wa.me/5562992352370?text=Ol%C3%A1%21" class="btn-hero btn-hero--secondary" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="about-section__gallery-viewport">
+        <div class="about-section__gallery" role="region" aria-label="Galeria de eventos">
+          <figure class="about-section__card">
+            <img src="./assets/casamento4.jpg" alt="Cerimônia de casamento com iluminação e decoração" loading="lazy" decoding="async">
+          </figure>
+          <figure class="about-section__card">
+            <img src="./assets/casamento7.jpg" alt="Salão de festas decorado para casamento" loading="lazy" decoding="async">
+          </figure>
+          <figure class="about-section__card">
+            <img src="./assets/casamento8.jpg" alt="Recepção de casamento com iluminação ambiente" loading="lazy" decoding="async">
+          </figure>
+          <figure class="about-section__card">
+            <img src="./assets/iluminacao7.jpg" alt="Evento noturno com iluminação de piscina e jardim" loading="lazy" decoding="async">
+          </figure>
+          <figure class="about-section__card">
+            <img src="./assets/led1.jpg" alt="Passarela com painéis de LED iluminados" loading="lazy" decoding="async">
+          </figure>
+          <figure class="about-section__card">
+            <img src="./assets/led8.jpg" alt="Estrutura de LED em evento" loading="lazy" decoding="async">
+          </figure>
+          <figure class="about-section__card">
+            <img src="./assets/led9.jpg" alt="Iluminação LED em palco de evento" loading="lazy" decoding="async">
+          </figure>
+          <figure class="about-section__card">
+            <img src="./assets/led10.jpg" alt="Cenografia com luzes LED" loading="lazy" decoding="async">
+          </figure>
+          <figure class="about-section__card">
+            <img src="./assets/iluminacao5.jpg" alt="Iluminação de evento" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </div>
+  </section>
+
+  <section class="cinematic-portfolio" id="portfolio" data-ft-scroll="portfolio" aria-label="Portfólio cinematográfico">
+    <div class="cinematic-portfolio__pin">
+      <div class="cinematic-portfolio__ambient" aria-hidden="true"></div>
+      <div class="cinematic-portfolio__glow cinematic-portfolio__glow--a" aria-hidden="true"></div>
+      <div class="cinematic-portfolio__glow cinematic-portfolio__glow--b" aria-hidden="true"></div>
+      <div class="cinematic-portfolio__grain" aria-hidden="true"></div>
+
+      <header class="cinematic-portfolio__top">
+        <p class="cinematic-portfolio__label">Portfólio</p>
+        <div class="cinematic-portfolio__counter" aria-live="polite">
+          <span class="cinematic-portfolio__counter-current">01</span>
+          <span class="cinematic-portfolio__counter-sep">/</span>
+          <span class="cinematic-portfolio__counter-total">05</span>
+        </div>
+      </header>
+
+      <div class="cinematic-portfolio__slides">
+        <article class="cinematic-slide is-active" data-accent="#c026d3">
+          <div class="cinematic-slide__media">
+            <picture>
+              <source media="(max-width: 900px)" srcset="./assets/casamento3.jpg">
+              <img src="./assets/casamento4.jpg" alt="Cerimônia de casamento com iluminação e decoração" width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async">
+            </picture>
+          </div>
+          <div class="cinematic-slide__overlay" aria-hidden="true"></div>
+          <div class="cinematic-slide__content">
+            <span class="cinematic-slide__index">01</span>
+            <h3 class="cinematic-slide__title">Casamentos</h3>
+            <p class="cinematic-slide__desc">Luz cênica e ambientação que transformam cada momento em uma memória inesquecível.</p>
+          </div>
+        </article>
+
+        <article class="cinematic-slide" data-accent="#3e8ce5">
+          <div class="cinematic-slide__media">
+            <picture>
+              <source media="(max-width: 900px)" srcset="./assets/iluminacao3.jpg">
+              <img src="./assets/iluminacao7.jpg" alt="Evento noturno com iluminação de piscina e jardim" width="1920" height="1080" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="cinematic-slide__overlay" aria-hidden="true"></div>
+          <div class="cinematic-slide__content">
+            <span class="cinematic-slide__index">02</span>
+            <h3 class="cinematic-slide__title">Iluminação cênica</h3>
+            <p class="cinematic-slide__desc">Cenografias de luz que criam atmosfera, profundidade e emoção em qualquer espaço.</p>
+          </div>
+        </article>
+
+        <article class="cinematic-slide" data-accent="#a855f7">
+          <div class="cinematic-slide__media">
+            <picture>
+              <source media="(max-width: 900px)" srcset="./assets/led8.jpg">
+              <img src="./assets/led1.jpg" alt="Passarela com painéis de LED iluminados" width="1920" height="1080" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="cinematic-slide__overlay" aria-hidden="true"></div>
+          <div class="cinematic-slide__content">
+            <span class="cinematic-slide__index">03</span>
+            <h3 class="cinematic-slide__title">Arco de LED</h3>
+            <p class="cinematic-slide__desc">Painéis e estruturas de LED que elevam o impacto visual do seu evento.</p>
+          </div>
+        </article>
+
+        <article class="cinematic-slide" data-accent="#10b981">
+          <div class="cinematic-slide__media">
+            <picture>
+              <source media="(max-width: 900px)" srcset="./assets/som2-m.png">
+              <img src="./assets/som2.jpg" alt="Sistema de som e estrutura em evento" width="1920" height="1080" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="cinematic-slide__overlay" aria-hidden="true"></div>
+          <div class="cinematic-slide__content">
+            <span class="cinematic-slide__index">04</span>
+            <h3 class="cinematic-slide__title">Som &amp; estrutura</h3>
+            <p class="cinematic-slide__desc">Áudio profissional, palco e montagem técnica para shows e celebrações de alto nível.</p>
+          </div>
+        </article>
+
+        <article class="cinematic-slide" data-accent="#ea580c">
+          <div class="cinematic-slide__media">
+            <picture>
+              <source media="(max-width: 900px)" srcset="./assets/debutante3.jpg">
+              <img src="./assets/iluminacao5.jpg" alt="Festa de debutante com iluminação e decoração premium" width="1920" height="1080" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="cinematic-slide__overlay" aria-hidden="true"></div>
+          <div class="cinematic-slide__content">
+            <span class="cinematic-slide__index">05</span>
+            <h3 class="cinematic-slide__title">Experiências premium</h3>
+            <p class="cinematic-slide__desc">Produção completa com equipe dedicada — do planejamento à desmontagem.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="cinematic-portfolio__progress" aria-hidden="true">
+        <div class="cinematic-portfolio__progress-track">
+          <div class="cinematic-portfolio__progress-fill"></div>
+        </div>
+      </div>
+
+      <p class="cinematic-portfolio__hint" aria-hidden="true">
+        <span class="cinematic-portfolio__hint-line"></span>
+        Role para explorar
+      </p>
     </div>
   </section>
 
-  <footer>
-    <p>&copy; 2025 F&T Iluminações - Todos os direitos reservados - Desenvolvido por <a href="https://www.instagram.com/murillosantanna__/">Murillo Sant'Anna</a></p>
-  </footer>
+  <section class="diferenciais" id="diferenciais" aria-labelledby="diferenciais-title">
+    <div class="diferenciais__ambient" aria-hidden="true"></div>
+    <div class="diferenciais__glow diferenciais__glow--a" aria-hidden="true"></div>
+    <div class="diferenciais__glow diferenciais__glow--b" aria-hidden="true"></div>
+    <div class="diferenciais__grain" aria-hidden="true"></div>
 
-    <script src="./js/script.js">
+    <div class="diferenciais__inner">
+      <header class="diferenciais__header">
+        <p class="diferenciais__label">Diferenciais</p>
+        <h2 class="diferenciais__title" id="diferenciais-title">
+          <span class="diferenciais__title-line">Muito Além da</span>
+          <span class="diferenciais__title-line">Iluminação</span>
+        </h2>
+      </header>
 
-    </script>
+      <div class="diferenciais__grid">
+        <article class="diferenciais-card" data-accent="#3e8ce5">
+          <span class="diferenciais-card__num" aria-hidden="true">01</span>
+          <h3 class="diferenciais-card__title">Equipamentos profissionais</h3>
+          <p class="diferenciais-card__desc">Som, luz, LED e estrutura de padrão técnico para entregar qualidade impecável em qualquer escala.</p>
+        </article>
+
+        <article class="diferenciais-card" data-accent="#c026d3">
+          <span class="diferenciais-card__num" aria-hidden="true">02</span>
+          <h3 class="diferenciais-card__title">Atmosfera cinematográfica</h3>
+          <p class="diferenciais-card__desc">Cenografias de luz que criam profundidade, emoção e a sensação de um evento de alto nível.</p>
+        </article>
+
+        <article class="diferenciais-card" data-accent="#a855f7">
+          <span class="diferenciais-card__num" aria-hidden="true">03</span>
+          <h3 class="diferenciais-card__title">Iluminação inteligente</h3>
+          <p class="diferenciais-card__desc">Controle preciso de cor, intensidade e timing para cada momento do seu evento brilhar no instante certo.</p>
+        </article>
+
+        <article class="diferenciais-card" data-accent="#ea580c">
+          <span class="diferenciais-card__num" aria-hidden="true">04</span>
+          <h3 class="diferenciais-card__title">Projetos personalizados</h3>
+          <p class="diferenciais-card__desc">Cada espaço recebe um conceito visual único, alinhado à identidade e à narrativa da celebração.</p>
+        </article>
+
+        <article class="diferenciais-card" data-accent="#10b981">
+          <span class="diferenciais-card__num" aria-hidden="true">05</span>
+          <h3 class="diferenciais-card__title">Execução organizada</h3>
+          <p class="diferenciais-card__desc">Montagem, operação e desmontagem com rigor técnico para que tudo aconteça no tempo certo.</p>
+        </article>
+
+        <article class="diferenciais-card" data-accent="#be123c">
+          <span class="diferenciais-card__num" aria-hidden="true">06</span>
+          <h3 class="diferenciais-card__title">Suporte completo</h3>
+          <p class="diferenciais-card__desc">Equipe presente do planejamento ao último minuto, garantindo tranquilidade em cada etapa.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="depoimentos" id="depoimentos" aria-labelledby="depoimentos-title">
+    <div class="depoimentos__ambient" aria-hidden="true"></div>
+    <div class="depoimentos__glow depoimentos__glow--a" aria-hidden="true"></div>
+    <div class="depoimentos__glow depoimentos__glow--b" aria-hidden="true"></div>
+    <div class="depoimentos__grain" aria-hidden="true"></div>
+
+    <div class="depoimentos__inner">
+      <header class="depoimentos__header">
+        <p class="depoimentos__label">Depoimentos</p>
+        <h2 class="depoimentos__title" id="depoimentos-title">
+          <span class="depoimentos__title-line">Experiências que</span>
+          <span class="depoimentos__title-line">marcaram momentos</span>
+        </h2>
+      </header>
+
+      <div class="depoimentos__showcase" data-depoimentos-showcase>
+        <div class="depoimentos__media" aria-hidden="true">
+          <figure class="depoimentos__visual is-active" data-index="0">
+            <img src="./assets/casamento3.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async">
+            <div class="depoimentos__visual-overlay"></div>
+          </figure>
+          <figure class="depoimentos__visual" data-index="1">
+            <img src="./assets/debutante3.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async">
+            <div class="depoimentos__visual-overlay"></div>
+          </figure>
+          <figure class="depoimentos__visual" data-index="2">
+            <img src="./assets/corporativo2.jpg" alt="" width="1200" height="1600" loading="lazy" decoding="async">
+            <div class="depoimentos__visual-overlay"></div>
+          </figure>
+          <figure class="depoimentos__visual" data-index="3">
+            <img src="./assets/iluminacao7.jpg" alt="" width="1920" height="1080" loading="lazy" decoding="async">
+            <div class="depoimentos__visual-overlay"></div>
+          </figure>
+        </div>
+
+        <div class="depoimentos__panel depoimentos-panel">
+          <div class="depoimentos__quote-mark" aria-hidden="true">“</div>
+
+          <div class="depoimentos__slides" aria-live="polite" aria-atomic="true">
+            <article class="depoimentos__slide is-active" data-index="0">
+              <blockquote class="depoimentos__quote">
+                <p>A iluminação transformou completamente o ambiente. Ficou muito além do que imaginávamos.</p>
+              </blockquote>
+              <footer class="depoimentos__meta">
+                <cite class="depoimentos__name">Mariana &amp; Rafael</cite>
+                <span class="depoimentos__event">Casamento · Goiânia, GO</span>
+              </footer>
+            </article>
+
+            <article class="depoimentos__slide" data-index="1">
+              <blockquote class="depoimentos__quote">
+                <p>Cada detalhe de luz contou uma história. A festa parecia um filme — emocionante do início ao fim.</p>
+              </blockquote>
+              <footer class="depoimentos__meta">
+                <cite class="depoimentos__name">Família Oliveira</cite>
+                <span class="depoimentos__event">Debutante · Aparecida de Goiânia, GO</span>
+              </footer>
+            </article>
+
+            <article class="depoimentos__slide" data-index="2">
+              <blockquote class="depoimentos__quote">
+                <p>Profissionalismo impecável. O evento corporativo ganhou uma atmosfera sofisticada que impressionou todos os convidados.</p>
+              </blockquote>
+              <footer class="depoimentos__meta">
+                <cite class="depoimentos__name">Grupo Horizonte</cite>
+                <span class="depoimentos__event">Evento corporativo · Goiânia, GO</span>
+              </footer>
+            </article>
+
+            <article class="depoimentos__slide" data-index="3">
+              <blockquote class="depoimentos__quote">
+                <p>A equipe entendeu exatamente a emoção que queríamos transmitir. Luz, som e estrutura em perfeita harmonia.</p>
+              </blockquote>
+              <footer class="depoimentos__meta">
+                <cite class="depoimentos__name">Camila Santos</cite>
+                <span class="depoimentos__event">Celebração especial · Trindade, GO</span>
+              </footer>
+            </article>
+          </div>
+
+          <nav class="depoimentos__nav" aria-label="Navegar depoimentos">
+            <button type="button" class="depoimentos__ctrl depoimentos__ctrl--prev">Anterior</button>
+            <p class="depoimentos__counter">
+              <span class="depoimentos__counter-current" id="depoimentos-counter-current">01</span>
+              <span class="depoimentos__counter-sep" aria-hidden="true">/</span>
+              <span class="depoimentos__counter-total">04</span>
+            </p>
+            <button type="button" class="depoimentos__ctrl depoimentos__ctrl--next">Próximo</button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta" id="final-cta" aria-labelledby="final-cta-heading">
+    <div class="final-cta__ambient" aria-hidden="true"></div>
+    <div class="final-cta__glow final-cta__glow--a" aria-hidden="true"></div>
+    <div class="final-cta__glow final-cta__glow--b" aria-hidden="true"></div>
+    <div class="final-cta__vignette" aria-hidden="true"></div>
+
+    <div class="final-cta__typo" aria-hidden="true">
+      <div class="final-cta__row final-cta__row--muted" data-final-cta-row="1">
+        <div class="final-cta__track" data-final-cta-track="1">
+          <span class="final-cta__word">Não faça só um evento</span>
+        </div>
+      </div>
+      <div class="final-cta__row final-cta__row--accent" data-final-cta-row="2">
+        <div class="final-cta__track" data-final-cta-track="2">
+          <span class="final-cta__word">Crie uma experiência</span>
+        </div>
+      </div>
+      <div class="final-cta__row final-cta__row--muted" data-final-cta-row="3">
+        <div class="final-cta__track" data-final-cta-track="3">
+          <span class="final-cta__word">Ilumine a emoção</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="final-cta__inner">
+      <div class="final-cta__foreground" data-final-cta-foreground>
+        <div class="final-cta__copy">
+          <h2 class="final-cta__headline" id="final-cta-heading">
+            Pronto para criar uma experiência que ninguém esquece?
+          </h2>
+        </div>
+        <div class="final-cta__actions about-section__cta">
+          <a
+            href="https://wa.me/5562992352370?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento."
+            class="btn-hero btn-hero--primary final-cta__btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Solicitar orçamento</span>
+            <i class="fa-solid fa-arrow-up-right" aria-hidden="true"></i>
+          </a>
+          <a
+            href="https://wa.me/5562992352370?text=Ol%C3%A1%21"
+            class="btn-hero btn-hero--secondary final-cta__btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>WhatsApp</span>
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="finale" id="finale" aria-labelledby="finale-cta-title">
+    <div class="finale__bg" aria-hidden="true">
+      <div class="finale__layer finale__layer--deep"></div>
+      <div class="finale__lights" data-finale-lights>
+        <div class="finale__beam finale__beam--1"></div>
+        <div class="finale__beam finale__beam--2"></div>
+        <div class="finale__beam finale__beam--3"></div>
+        <div class="finale__orb finale__orb--a"></div>
+        <div class="finale__orb finale__orb--b"></div>
+        <div class="finale__orb finale__orb--c"></div>
+      </div>
+      <div class="finale__particles">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span>
+      </div>
+      <div class="finale__fog"></div>
+      <div class="finale__grain"></div>
+      <div class="finale__vignette"></div>
+      <div class="finale__floor-glow"></div>
+    </div>
+
+    <div class="finale__stage">
+      <div class="finale__manifest" data-finale-manifest>
+        <p class="finale__line finale__line--ghost">Não faça só um evento</p>
+        <h2 class="finale__line finale__line--hero" id="finale-manifest-title">Crie uma experiência</h2>
+      </div>
+
+      <div class="finale__cta" data-finale-cta>
+        <div class="finale__cta-glow" aria-hidden="true"></div>
+        <div class="finale__cta-inner">
+          <h3 class="finale__cta-title" id="finale-cta-title">Vamos transformar seu evento?</h3>
+          <p class="finale__cta-sub">
+            Criamos experiências visuais pensadas para marcar momentos inesquecíveis.
+          </p>
+          <div class="finale__actions">
+            <a
+              href="https://wa.me/5562992352370?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento."
+              class="finale__btn finale__btn--primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Solicitar orçamento</span>
+              <i class="fa-solid fa-arrow-up-right" aria-hidden="true"></i>
+            </a>
+            <a
+              href="https://wa.me/5562992352370?text=Ol%C3%A1%21"
+              class="finale__btn finale__btn--whatsapp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>WhatsApp</span>
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </a>
+            <a href="#portfolio" class="finale__btn finale__btn--outline">
+              <span>Ver projetos</span>
+              <i class="fa-solid fa-play" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script>
+  <script src="./js/loader.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" crossorigin="anonymous"></script>
+  <script src="./js/smooth-scroll.js"></script>
+  <script src="./js/scroll-pins.js"></script>
+  <script src="./js/about-reveal.js"></script>
+  <script src="./js/impact-cards.js"></script>
+  <script src="./js/about-showcase.js"></script>
+  <script src="./js/cinematic-portfolio.js"></script>
+  <script src="./js/diferenciais.js"></script>
+  <script src="./js/depoimentos.js"></script>
+  <script src="./js/final-cta.js"></script>
+  <script src="./js/finale.js"></script>
+  <script src="./js/site-header.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 </html>

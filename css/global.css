@@ -13,10 +13,54 @@ body {
   line-height: 1.6;
 }
 
+.page-home .navbar {
+  display: none;
+}
+
+/* Nome + logo fixos — home (sem barra de header) */
+.site-brand-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 90px 100px 0;
+  box-sizing: border-box;
+  pointer-events: none;
+  background: none;
+}
+
+.site-brand-fixed .hero-brand,
+.site-brand-fixed .hero-logo-mark {
+  pointer-events: auto;
+}
+
+.site-brand-fixed--on-light .hero-brand-ft {
+  color: #111111;
+}
+
+.site-brand-fixed--on-light .hero-brand-name {
+  color: #9a7b1a;
+}
+
+.site-brand-fixed--on-light .hero-logo-mark img {
+  filter: brightness(0);
+}
+
+.site-brand-fixed .hero-brand-ft,
+.site-brand-fixed .hero-brand-name,
+.site-brand-fixed .hero-logo-mark img {
+  transition: color 0.3s ease, filter 0.3s ease;
+}
+
 /* Barra de Navegação */
 .navbar {
   display: flex;
-  height: 100px;
+  height: var(--navbar-height, 100px);
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
@@ -26,13 +70,45 @@ body {
   z-index: 1000;
 }
 
-.navbar .fa-whatsapp {
-  font-size: 30px;
-  color: #25d366;
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-brand img {
+  max-height: 70px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.navbar-brand-ft {
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.navbar-brand-name {
+  color: #d4af37;
+  font-weight: 500;
+}
+
+.navbar-brand-text {
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .navbar .logo img {
   max-height: 70px;
+}
+
+.navbar .fa-whatsapp {
+  font-size: 30px;
+  color: #25d366;
 }
 
 .navbar nav ul {
@@ -57,6 +133,24 @@ body {
   font-size: 24px;
   color: #fff;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .site-brand-fixed {
+    padding: 24px 20px 0;
+  }
+
+  .site-brand-fixed .hero-logo-mark img {
+    height: 26px;
+  }
+
+  .navbar-brand img {
+    max-height: 56px;
+  }
+
+  .navbar-brand-text {
+    font-size: 0.875rem;
+  }
 }
 
 /* RESPONSIVO */
@@ -183,10 +277,6 @@ footer p a {
 
 /* Tablet (até 1024px) */
 @media (max-width: 1024px) {
-  .hero h1 {
-    font-size: 40px;
-  }
-
   .why-us h2 {
     font-size: 32px;
   }
@@ -200,11 +290,6 @@ footer p a {
 @media (max-width: 768px) {
   .navbar .logo img {
     max-height: 60px;
-  }
-
-  .hero h1 {
-    font-size: 33px;
-    margin-bottom: 20px;
   }
 
   .why-us h2 {
