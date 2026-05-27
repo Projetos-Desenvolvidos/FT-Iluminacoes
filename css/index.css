@@ -341,6 +341,10 @@
   transform: none;
 }
 
+.hero-cta-platform--desktop {
+  display: none;
+}
+
 .hero-kpis {
   display: flex;
   flex-direction: row;
@@ -572,7 +576,7 @@
 .about-section__title-line {
   display: block;
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(2rem, 5.8vw, 5.875rem);
+  font-size: clamp(2.25rem, 4.8vw, 4.25rem);
   font-weight: 400;
   line-height: 1.08;
   letter-spacing: -0.025em;
@@ -1056,16 +1060,15 @@ p {
 
 .impact-section__inner {
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
 }
 
 .impact-section__layout {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: clamp(32px, 5vh, 56px);
+  display: grid;
+  grid-template-columns: minmax(320px, 36%) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(28px, 3.4vw, 56px);
   min-height: 0;
 }
 
@@ -1075,16 +1078,17 @@ p {
   align-items: flex-start;
   gap: clamp(24px, 4vh, 40px);
   width: 100%;
-  max-width: 100%;
+  max-width: min(100%, 620px);
 }
 
 .impact-section__title {
+  left: 0px;
   margin: 0;
   font-size: clamp(2rem, 5.8vw, 6.875rem);
   font-weight: 400;
-  line-height: 1.08;
+  line-height: 1.12;
   letter-spacing: -0.025em;
-  text-transform: uppercase;
+  text-transform: none;
   color: #111111;
   max-width: 100%;
 }
@@ -1098,43 +1102,26 @@ p {
   margin-top: 0.06em;
 }
 
+.impact-section__line--desk {
+  white-space: nowrap;
+}
+
 .impact-section__line--mob {
   display: none;
 }
 
 .impact-section__cards {
-  position: relative;
-  top: auto;
-  left: auto;
-  right: auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(190px, 1fr));
   justify-content: stretch;
   align-items: stretch;
   gap: clamp(16px, 2vw, 24px);
   width: 100%;
   max-width: 100%;
-  margin: 0;
-  padding: 12px 0 0;
+  margin: clamp(140px, 11vh, 170px) 0 0;
+  padding: 0;
   box-sizing: border-box;
   pointer-events: auto;
-}
-
-@media (min-width: 1201px) {
-  .impact-section__layout {
-    min-height: clamp(620px, 70vh, 820px);
-  }
-
-  .impact-section__cards {
-    position: absolute;
-    top: clamp(220px, 26vh, 300px);
-    left: 0;
-    right: 0;
-    grid-template-columns: repeat(3, minmax(260px, 340px));
-    justify-content: flex-end;
-    max-width: none;
-    padding: 12px clamp(24px, 5vw, 80px) 0;
-  }
 }
 
 .impact-card {
@@ -1158,6 +1145,14 @@ p {
     transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
     box-shadow 0.45s ease;
   will-change: transform, opacity;
+}
+
+@media (min-width: 901px) {
+  .impact-card {
+    aspect-ratio: 1 / 1;
+    min-height: clamp(240px, 24vw, 320px);
+    padding: clamp(28px, 2.4vw, 36px);
+  }
 }
 
 .impact-card__badge {
@@ -1259,19 +1254,21 @@ p {
 
 .impact-section__cta {
   margin: 0;
-  width: 100%;
-  max-width: min(100%, 420px);
+  width: fit-content;
+  max-width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  grid-template-columns: auto auto;
+  gap: 12px;
+  justify-content: start;
 }
 
 .impact-section__cta .btn-hero {
-  width: 100%;
+  width: auto;
   min-height: 48px;
-  padding: 12px 16px;
-  font-size: clamp(0.8125rem, 2.8vw, 0.9375rem);
-  white-space: normal;
+  max-height: 57px;
+  padding: 0 32px;
+  font-size: 0.95rem;
+  white-space: nowrap;
   text-align: center;
 }
 

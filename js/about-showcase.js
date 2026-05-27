@@ -20,8 +20,9 @@
   let trackTween = null;
   let resizeTimer = null;
   let hasAnnouncedReady = false;
-  const SCRUB_SMOOTH = 1.35;
-  const SCROLL_DISTANCE_MULTIPLIER = 1.2;
+  const IS_MOBILE = window.matchMedia('(max-width: 900px)').matches || window.matchMedia('(pointer: coarse)').matches;
+  const SCRUB_SMOOTH = IS_MOBILE ? 0.8 : 1.35;
+  const SCROLL_DISTANCE_MULTIPLIER = IS_MOBILE ? 1.05 : 1.2;
   const cards = gsap.utils.toArray('.about-section__card', gallery);
   const images = cards.map((card) => card.querySelector('img')).filter(Boolean);
 
@@ -39,6 +40,7 @@
   }
 
   function resetCardEffects() {
+    if (IS_MOBILE) return;
     gsap.set(cards, { clearProps: 'transform,opacity,zIndex' });
     gsap.set(images, { clearProps: 'transform,opacity,clipPath,filter' });
   }
@@ -81,6 +83,7 @@
   }
 
   function updateCardEffects() {
+    if (IS_MOBILE) return;
     const viewportRect = viewport.getBoundingClientRect();
     const focusX = viewportRect.left + viewportRect.width * 0.34;
     const influence = viewportRect.width * 0.52;
@@ -199,12 +202,12 @@
         anticipatePin: 0,
         fastScrollEnd: true,
         refreshPriority: 10,
-        onUpdate: updateCardEffects,
-        onLeave: () => resetCardEffects(),
+        onUpdate: IS_MOBILE ? undefined : updateCardEffects,
+        onLeave: IS_MOBILE ? undefined : () => resetCardEffects(),
       },
     });
 
-    updateCardEffects();
+    if (!IS_MOBILE) updateCardEffects();
     announceReady();
   }
 

@@ -7,6 +7,15 @@
   window.__ftSmoothScrollInitialized = true;
 
   let lenisInstance = null;
+  const MOBILE_QUERY = '(max-width: 900px)';
+  const COARSE_POINTER_QUERY = '(pointer: coarse)';
+
+  function isMobileRuntime() {
+    return (
+      window.matchMedia(MOBILE_QUERY).matches ||
+      window.matchMedia(COARSE_POINTER_QUERY).matches
+    );
+  }
 
   function setupAnchorSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -33,14 +42,15 @@
 
   function setupLenis() {
     if (typeof Lenis === 'undefined') return;
+    const isMobile = isMobileRuntime();
 
     const lenis = new Lenis({
-      duration: 1.05,
+      duration: isMobile ? 0.78 : 1.05,
       smoothWheel: true,
       smoothTouch: true,
-      syncTouch: true,
-      wheelMultiplier: 0.88,
-      touchMultiplier: 0.9,
+      syncTouch: false,
+      wheelMultiplier: isMobile ? 0.82 : 0.88,
+      touchMultiplier: isMobile ? 0.78 : 0.9,
       easing: (t) => 1 - Math.pow(1 - t, 3),
     });
 
@@ -72,9 +82,15 @@
         });
 
         ScrollTrigger.defaults({ scroller: scrollRoot });
+        let scrollTicking = false;
         lenis.on('scroll', () => {
-          ScrollTrigger.update();
-          window.dispatchEvent(new CustomEvent('ft:scroll'));
+          if (scrollTicking) return;
+          scrollTicking = true;
+          requestAnimationFrame(() => {
+            scrollTicking = false;
+            ScrollTrigger.update();
+            window.dispatchEvent(new CustomEvent('ft:scroll'));
+          });
         });
 
         ScrollTrigger.addEventListener('refresh', () => {
@@ -85,7 +101,7 @@
       gsap.ticker.add((time) => {
         lenis.raf(time * 1000);
       });
-      gsap.ticker.lagSmoothing(0);
+      gsap.ticker.lagSmoothing(500, 33);
 
       if (typeof ScrollTrigger !== 'undefined') {
         ScrollTrigger.refresh();

@@ -213,7 +213,7 @@ svg {
     display: flex !important;
   }
 
-  .hero-cta.hero-cta-platform {
+  .hero-cta.hero-cta-platform--mobile {
     position: relative;
     bottom: auto;
     left: auto;
@@ -270,7 +270,7 @@ svg {
   }
 
   .hero-title {
-    font-size: 68px;
+    font-size: 52px;
     line-height: 1.12;
     max-width: 100%;
   }
@@ -334,16 +334,26 @@ svg {
     transform: none;
   }
 
-  .hero-cta.hero-cta-platform {
-    position: absolute;
-    left: max(16px, calc(40px - clamp(24px, 5vw, 72px)));
-    bottom: 20px;
+  .hero-cta.hero-cta-platform--mobile {
+    display: none;
+  }
+
+  .hero-cta.hero-cta-platform--desktop {
+    display: grid;
+    position: absolute !important;
+    left: max(16px, calc(40px - clamp(24px, 5vw, 72px))) !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: 20px !important;
     display: grid;
     grid-template-columns: auto auto;
+    justify-content: start;
     width: fit-content;
     max-width: none;
-    margin-top: 0;
+    margin: 0;
     flex: none;
+    transform: none !important;
+    z-index: 20;
   }
 
   .hero-cta__wa {
@@ -367,14 +377,24 @@ svg {
 /* ─── Eventos que inspiram (impact-section) ─── */
 @media (min-width: 901px) {
   .impact-section .impact-section__cta.hero-cta {
-    width: 100%;
-    max-width: min(100%, 420px);
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: fit-content;
+    max-width: 100%;
+    grid-template-columns: auto auto;
   }
 }
 
 @media (max-width: 1200px) {
+  .impact-section__layout {
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 4vh, 40px);
+  }
+
+  .impact-section__header {
+    max-width: 100%;
+  }
+
   .impact-section__cards {
+    margin-top: clamp(96px, 10vh, 148px);
     grid-template-columns: repeat(2, minmax(0, 1fr));
     max-width: 100%;
   }
@@ -414,11 +434,13 @@ svg {
 
   .impact-section__title {
     font-size: clamp(1.625rem, 8.2vw, 2.5rem);
+    text-transform: uppercase;
   }
 
   .impact-section__cards {
+    margin-top: 0;
     gap: clamp(14px, 2.5vh, 20px);
-    padding-top: 8px;
+    padding-top: 0;
   }
 
   .impact-card {
