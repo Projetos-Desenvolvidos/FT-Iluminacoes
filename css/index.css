@@ -64,6 +64,10 @@
     animation: none !important;
     transition: none !important;
   }
+
+  .about-section__gallery-hint__line {
+    animation: none;
+  }
 }
 
 /* ─── Hero + refletor RGB (estilo referência) ─── */
@@ -617,6 +621,52 @@
   width: 100%;
   overflow: hidden;
   perspective: 1600px;
+}
+
+.about-section__gallery-hint {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: clamp(12px, 2.5vh, 18px) 0 0;
+  padding: 0 clamp(20px, 5vw, 28px);
+  font-family: "Inter", sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.42);
+}
+
+.about-section__gallery-hint__line {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(17, 17, 17, 0.28), transparent);
+  animation: about-gallery-hint-nudge 2.2s ease-in-out infinite;
+}
+
+@keyframes about-gallery-hint-nudge {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateX(-4px);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+}
+
+.about-section__showcase--static .about-section__gallery-hint {
+  display: flex;
+  grid-column: 1 / -1;
+}
+
+.about-section__showcase--scroll-driven .about-section__gallery-hint,
+.ft-experiences-scroll--active .about-section__gallery-hint {
+  display: none;
 }
 
 .about-section__gallery {

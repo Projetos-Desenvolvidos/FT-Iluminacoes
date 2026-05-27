@@ -523,6 +523,12 @@ svg {
     scroll-snap-align: center;
   }
 
+  html.ft-lite-mobile .about-section__gallery-hint {
+    width: 100%;
+    margin-right: calc(50% - 50vw);
+    padding-right: calc(50vw - 50%);
+  }
+
   html.ft-lite-mobile .cinematic-portfolio--active,
   html.ft-lite-mobile .ft-portfolio-cinematic-scroll--active {
     touch-action: pan-y;
