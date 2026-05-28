@@ -32,11 +32,6 @@ body {
   box-sizing: border-box;
   pointer-events: none;
   background: none;
-  transform: translate3d(0, 0, 0);
-  -webkit-transform: translate3d(0, 0, 0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  will-change: transform;
 }
 
 .site-brand-fixed .hero-brand,
@@ -60,18 +55,6 @@ body {
 .site-brand-fixed .hero-brand-name,
 .site-brand-fixed .hero-logo-mark img {
   transition: color 0.3s ease, filter 0.3s ease;
-}
-
-/* iOS Safari: keeps fixed brand stable during toolbar collapse/expand */
-@supports (-webkit-touch-callout: none) {
-  .page-home .site-brand-fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-  }
 }
 
 /* Barra de Navegação */
