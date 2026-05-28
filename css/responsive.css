@@ -507,6 +507,16 @@ svg {
 
 /* ─── Modo leve mobile (scroll nativo + galeria snap) ─── */
 @media (max-width: 900px) {
+  .btn-hero,
+  .btn-hero--primary,
+  .btn-hero--secondary,
+  .finale__btn,
+  .btn-primary,
+  .btn-secondary {
+    box-shadow: none !important;
+    filter: none !important;
+  }
+
   html.ft-lite-mobile .about-section__showcase--static {
     min-height: auto;
   }
@@ -559,6 +569,30 @@ svg {
   html.ft-lite-mobile .finale__lights,
   html.ft-lite-mobile .final-cta__word {
     will-change: auto !important;
+  }
+}
+
+/* iOS Safari: avoids black gaps and toolbar reflow artifacts */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 900px) {
+    html,
+    body {
+      background: #050508;
+    }
+
+    .hero-studio,
+    .cinematic-portfolio__pin,
+    .final-cta,
+    .finale {
+      height: 100svh;
+      min-height: 100svh;
+      max-height: 100svh;
+    }
+
+    .cinematic-portfolio,
+    .finale {
+      background: #050508;
+    }
   }
 }
 
