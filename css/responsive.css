@@ -572,29 +572,6 @@ svg {
   }
 }
 
-/* iOS Safari: avoids black gaps and toolbar reflow artifacts */
-@supports (-webkit-touch-callout: none) {
-  @media (max-width: 900px) {
-    html,
-    body {
-      background: #050508;
-    }
-
-    .hero-studio,
-    .cinematic-portfolio__pin,
-    .final-cta,
-    .finale {
-      height: 100svh;
-      min-height: 100svh;
-      max-height: 100svh;
-    }
-
-    .cinematic-portfolio,
-    .finale {
-      background: #050508;
-    }
-  }
-}
 
 /* ─── Sobre / experiências ─── */
 @media (max-width: 1024px) {
