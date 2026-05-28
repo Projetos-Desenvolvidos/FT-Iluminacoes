@@ -2679,7 +2679,15 @@ p {
 }
 
 .finale__floor-glow {
-  display: none;
+  position: absolute;
+  left: 50%;
+  bottom: -15%;
+  width: min(90vw, 900px);
+  height: 40%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse 100% 100% at 50% 0%, color-mix(in srgb, var(--rgb-color) 22%, transparent), transparent 70%);
+  filter: blur(40px);
+  opacity: 0.5;
 }
 
 .finale__stage {
@@ -2735,7 +2743,19 @@ p {
 }
 
 .finale__cta-glow {
-  display: none;
+  position: absolute;
+  inset: -40% -20%;
+  z-index: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, color-mix(in srgb, var(--rgb-color) 28%, transparent), transparent 68%);
+  filter: blur(50px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .finale--revealed .finale__cta-glow {
+    animation: finale-cta-glow-pulse 6s ease-in-out infinite;
+  }
 }
 
 .finale__cta-inner {
@@ -2908,21 +2928,11 @@ p {
   .cinematic-portfolio__pin,
   .final-cta,
   .final-cta__inner,
-  .finale {
-    min-height: auto;
-    height: auto;
-  }
-
+  .finale,
   .finale__stage {
     min-height: calc(var(--ft-vh, 1vh) * 100);
     height: auto;
     max-height: none;
-  }
-
-  @media (max-width: 768px) {
-    .finale__stage {
-      min-height: auto;
-    }
   }
 
   .cinematic-portfolio {

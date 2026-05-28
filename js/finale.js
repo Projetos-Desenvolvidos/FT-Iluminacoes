@@ -10,6 +10,8 @@
   const ctaTitle = section.querySelector('.finale__cta-title');
   const ctaSub = section.querySelector('.finale__cta-sub');
   const actions = section.querySelector('.finale__actions');
+  const ctaGlow = section.querySelector('.finale__cta-glow');
+
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let played = false;
 
@@ -18,12 +20,14 @@
   function revealAll() {
     gsap.set(revealTargets, { opacity: 1, y: 0 });
     if (lineGhost) gsap.set(lineGhost, { opacity: 0.38 });
+    if (ctaGlow) gsap.set(ctaGlow, { opacity: 0.4 });
     section.classList.add('finale--revealed', 'finale--ready');
     window.dispatchEvent(new CustomEvent('ft:finale-ready'));
   }
 
   function prepareHidden() {
     gsap.set(revealTargets, { opacity: 0, y: 18 });
+    if (ctaGlow) gsap.set(ctaGlow, { opacity: 0 });
   }
 
   function playReveal() {
@@ -50,6 +54,9 @@
     }
     if (actions) {
       tl.to(actions, { opacity: 1, y: 0, duration: 0.5 }, '-=0.28');
+    }
+    if (ctaGlow) {
+      tl.to(ctaGlow, { opacity: 0.4, duration: 0.55 }, '-=0.4');
     }
   }
 
