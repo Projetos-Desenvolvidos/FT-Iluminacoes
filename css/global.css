@@ -28,7 +28,8 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 90px 100px 0;
+  padding: max(90px, env(safe-area-inset-top, 0px)) max(100px, env(safe-area-inset-right, 0px)) 0
+    max(100px, env(safe-area-inset-left, 0px));
   box-sizing: border-box;
   pointer-events: none;
   background: none;
