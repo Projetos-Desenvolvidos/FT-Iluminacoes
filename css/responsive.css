@@ -739,6 +739,12 @@ svg {
 
 /* ─── Finale (clímax) ─── */
 @media (max-width: 768px) {
+  .finale,
+  .finale__stage {
+    min-height: auto;
+    height: auto;
+  }
+
   .finale__line--ghost {
     font-size: clamp(1.5rem, 5.5vw, 2.5rem);
   }
@@ -750,6 +756,7 @@ svg {
   .finale__stage {
     gap: clamp(32px, 6vh, 48px);
     padding-top: clamp(80px, 12vh, 100px);
+    padding-bottom: clamp(48px, 10vh, 72px);
   }
 
   .finale__cta-title {

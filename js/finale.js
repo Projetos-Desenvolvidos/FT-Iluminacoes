@@ -1,204 +1,89 @@
 /**
- * Finale — clímax cinematográfico (pin + scrub + reveal)
+ * Finale — texto surge ao entrar na viewport (sem pin/scrub)
  */
 (function () {
   const section = document.querySelector('.finale');
   if (!section || typeof gsap === 'undefined') return;
 
-  const manifest = section.querySelector('[data-finale-manifest]');
-  const cta = section.querySelector('[data-finale-cta]');
-  const lights = section.querySelector('[data-finale-lights]');
-  const fog = section.querySelector('.finale__fog');
-  const floorGlow = section.querySelector('.finale__floor-glow');
   const lineGhost = section.querySelector('.finale__line--ghost');
   const lineHero = section.querySelector('.finale__line--hero');
-  const ctaGlow = section.querySelector('.finale__cta-glow');
-
+  const ctaTitle = section.querySelector('.finale__cta-title');
+  const ctaSub = section.querySelector('.finale__cta-sub');
+  const actions = section.querySelector('.finale__actions');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const lowPerfMode =
-    Boolean(window.__ftLowPerfMode) ||
-    window.matchMedia('(max-width: 900px)').matches ||
-    window.matchMedia('(pointer: coarse)').matches;
-  let lastViewportWidth = window.innerWidth;
-  let lastViewportHeight = window.innerHeight;
+  let played = false;
 
-  function revealStatic() {
-    gsap.set([manifest, cta], { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' });
+  const revealTargets = [lineGhost, lineHero, ctaTitle, ctaSub, actions].filter(Boolean);
+
+  function revealAll() {
+    gsap.set(revealTargets, { opacity: 1, y: 0 });
+    if (lineGhost) gsap.set(lineGhost, { opacity: 0.38 });
     section.classList.add('finale--revealed', 'finale--ready');
+    window.dispatchEvent(new CustomEvent('ft:finale-ready'));
   }
 
-  function initMotion() {
-    if (typeof ScrollTrigger === 'undefined') {
-      revealStatic();
-      return;
-    }
+  function prepareHidden() {
+    gsap.set(revealTargets, { opacity: 0, y: 18 });
+  }
 
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ghostBlur = lowPerfMode ? 0 : 18;
-    const heroBlur = lowPerfMode ? 0 : 22;
-    const ctaBlur = lowPerfMode ? 0 : 14;
-
-    gsap.set(manifest, { opacity: 0, y: 0 });
-    gsap.set(lineGhost, { opacity: 0, y: 72, filter: ghostBlur ? `blur(${ghostBlur}px)` : 'none' });
-    gsap.set(lineHero, { opacity: 0, y: 96, filter: heroBlur ? `blur(${heroBlur}px)` : 'none' });
-    gsap.set(cta, { opacity: 0, y: 56, scale: 0.94, filter: ctaBlur ? `blur(${ctaBlur}px)` : 'none' });
-    if (ctaGlow) gsap.set(ctaGlow, { opacity: 0, scale: 0.85 });
-    if (lights) gsap.set(lights, { y: 40, scale: 1.05 });
-    if (fog) gsap.set(fog, { opacity: 0.35 });
-    if (floorGlow) gsap.set(floorGlow, { opacity: 0.25, scale: 0.9 });
+  function playReveal() {
+    if (played) return;
+    played = true;
+    section.classList.add('finale--ready', 'finale--revealed');
 
     const tl = gsap.timeline({
-      scrollTrigger: {
-        id: 'ftFinaleClimax',
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${Math.round(window.innerHeight * (lowPerfMode ? 1.05 : 1.35))}`,
-        pin: true,
-        pinSpacing: true,
-        scrub: lowPerfMode ? 0.85 : 1.35,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onEnter: () => section.classList.add('finale--revealed'),
-      },
+      defaults: { ease: 'power2.out' },
+      onComplete: () => window.dispatchEvent(new CustomEvent('ft:finale-ready')),
     });
 
-    tl.to(manifest, { opacity: 1, duration: 0.15, ease: 'none' }, 0)
-      .to(
-        lineGhost,
-        {
-          opacity: 0.38,
-          y: 0,
-          filter: 'none',
-          duration: 0.28,
-          ease: 'power3.out',
-        },
-        0.02
-      )
-      .to(
-        lineHero,
-        {
-          opacity: 1,
-          y: 0,
-          filter: 'none',
-          duration: 0.38,
-          ease: 'power3.out',
-        },
-        0.1
-      )
-      .to(
-        lineGhost,
-        {
-          opacity: 0.22,
-          y: -48,
-          duration: 0.35,
-          ease: 'power2.inOut',
-        },
-        0.38
-      )
-      .to(
-        lineHero,
-        {
-          y: -72,
-          scale: 0.94,
-          duration: 0.35,
-          ease: 'power2.inOut',
-        },
-        0.38
-      )
-      .to(
-        manifest,
-        {
-          opacity: 0.55,
-          duration: 0.25,
-          ease: 'power2.in',
-        },
-        0.52
-      );
-
-    if (lights) {
-      tl.to(lights, { y: -30, scale: 1, duration: 1, ease: 'none' }, 0).to(
-        lights,
-        { x: 24, duration: 1, ease: 'none' },
-        0
-      );
+    if (lineGhost) {
+      tl.to(lineGhost, { opacity: 0.38, y: 0, duration: 0.55 });
     }
-
-    if (fog) {
-      tl.to(fog, { opacity: 0.62, duration: 0.5, ease: 'none' }, 0.2);
+    if (lineHero) {
+      tl.to(lineHero, { opacity: 1, y: 0, duration: 0.6 }, lineGhost ? '-=0.32' : 0);
     }
-
-    if (floorGlow) {
-      tl.to(floorGlow, { opacity: 0.65, scale: 1.08, duration: 0.55, ease: 'none' }, 0.45);
+    if (ctaTitle) {
+      tl.to(ctaTitle, { opacity: 1, y: 0, duration: 0.5 }, '-=0.22');
     }
-
-    tl.to(
-      cta,
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        filter: 'none',
-        duration: 0.42,
-        ease: 'power3.out',
-      },
-      0.5
-    );
-
-    if (ctaGlow) {
-      tl.to(
-        ctaGlow,
-        {
-          opacity: 0.5,
-          scale: 1,
-          duration: 0.45,
-          ease: 'power2.out',
-        },
-        0.52
-      );
+    if (ctaSub) {
+      tl.to(ctaSub, { opacity: 1, y: 0, duration: 0.45 }, '-=0.35');
     }
-
-    tl.eventCallback('onStart', () => section.classList.add('finale--ready'));
-
-    const refresh = () => {
-      if (typeof ScrollTrigger !== 'undefined') ScrollTrigger.refresh();
-    };
-
-    window.dispatchEvent(new CustomEvent('ft:finale-ready'));
-    window.addEventListener('ft:loader-complete', refresh, { once: true });
-    window.addEventListener('ft:final-cta-ready', refresh, { once: true });
-    window.addEventListener('ft:cinematic-portfolio-ready', refresh, { once: true });
-    let resizeTimer;
-    window.addEventListener(
-      'resize',
-      () => {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        const widthStable = Math.abs(w - lastViewportWidth) < 2;
-        const heightDelta = Math.abs(h - lastViewportHeight);
-        const isIosToolbarResize =
-          (window.matchMedia('(pointer: coarse)').matches || /iPhone|iPad|iPod/i.test(navigator.userAgent)) &&
-          widthStable &&
-          heightDelta > 0 &&
-          heightDelta < 140;
-
-        lastViewportWidth = w;
-        lastViewportHeight = h;
-        if (isIosToolbarResize) return;
-
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(refresh, 180);
-      },
-      { passive: true }
-    );
+    if (actions) {
+      tl.to(actions, { opacity: 1, y: 0, duration: 0.5 }, '-=0.28');
+    }
   }
 
   function init() {
     if (reducedMotion) {
-      revealStatic();
+      revealAll();
       return;
     }
-    initMotion();
+
+    if (typeof ScrollTrigger === 'undefined') {
+      revealAll();
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+    prepareHidden();
+
+    ScrollTrigger.create({
+      id: 'ftFinaleReveal',
+      trigger: section,
+      start: 'top 82%',
+      onEnter: playReveal,
+    });
+
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener('ft:loader-complete', refresh, { once: true });
+    window.addEventListener('ft:final-cta-ready', refresh, { once: true });
+
+    requestAnimationFrame(() => {
+      refresh();
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.top < vh * 0.82 && rect.bottom > 0) playReveal();
+    });
   }
 
   if (document.readyState === 'loading') {
