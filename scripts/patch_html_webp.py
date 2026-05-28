@@ -6,7 +6,6 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-HTML_GLOB = ("index.html", "paginas/*.html")
 
 IMG_RE = re.compile(
     r'(<img\b(?![^>]*\bsrcset=)(?=[^>]*\bsrc=["\'])(?=[^>]*assets/)[^>]*\bsrc=["\'])([^"\']+)(["\'][^>]*>)',
@@ -63,7 +62,7 @@ def patch_file(path: Path) -> int:
 
 
 def main() -> None:
-  files = [ROOT / "index.html", *sorted((ROOT / "paginas").glob("*.html"))]
+  files = [ROOT / "index.html"]
   total = 0
   for f in files:
     if f.is_file():

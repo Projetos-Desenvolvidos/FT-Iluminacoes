@@ -385,7 +385,7 @@ footer p a {
 .btn-primary {
   display: inline-block;
   padding: 14px 30px;
-  background: #3a77ff;
+  background: #0b1c4d;
   color: #fff;
   border-radius: 6px;
   text-decoration: none;
@@ -394,7 +394,7 @@ footer p a {
 }
 
 .btn-primary:hover {
-  background: #2958d4;
+  background: #16306f;
   transform: translateY(-2px);
 }
 

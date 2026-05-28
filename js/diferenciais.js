@@ -25,15 +25,16 @@
 
   function playReveal() {
     const targets = [label, ...titleLines].filter(Boolean);
+    const lowPerf = Boolean(window.__ftLowPerfMode) || window.matchMedia('(max-width: 900px)').matches;
 
     if (targets.length) {
       gsap.fromTo(
         targets,
-        { opacity: 0, y: 36, filter: 'blur(10px)' },
+        { opacity: 0, y: 36, filter: lowPerf ? 'none' : 'blur(10px)' },
         {
           opacity: 1,
           y: 0,
-          filter: 'blur(0px)',
+          filter: 'none',
           duration: 0.9,
           stagger: 0.12,
           ease: 'power3.out',

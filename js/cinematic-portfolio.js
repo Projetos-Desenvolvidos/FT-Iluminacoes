@@ -45,11 +45,8 @@
     return isMobileRuntime() ? 0.55 : 1;
   }
 
-  function getBlurAmount(kind) {
-    if (!isMobileRuntime()) {
-      return kind === 'in' ? 14 : 12;
-    }
-    return kind === 'in' ? 7 : 6;
+  function isLowPerf() {
+    return Boolean(window.__ftLowPerfMode) || isMobileRuntime();
   }
 
   function frameLabel(index) {
@@ -77,14 +74,14 @@
       if (index === 0) {
         gsap.set(slide, { autoAlpha: 1, visibility: 'visible', zIndex: 2 });
         if (media) {
-          gsap.set(media, { opacity: 1, scale: 1, y: 0, filter: 'blur(0px) brightness(1)' });
+          gsap.set(media, { opacity: 1, scale: 1, y: 0, filter: 'none', force3D: true });
         }
         gsap.set(content, { autoAlpha: 1, y: 0 });
         setAccent(slide.dataset.accent);
       } else {
         gsap.set(slide, { autoAlpha: 0, visibility: 'hidden', zIndex: 1 });
         if (media) {
-          gsap.set(media, { opacity: 1, scale: 1.12, y: 40, filter: `blur(${getBlurAmount('out')}px) brightness(0.65)` });
+          gsap.set(media, { opacity: 1, scale: 1.04, y: 24, filter: 'none', force3D: true });
         }
         gsap.set(content, { autoAlpha: 0, y: 32 });
       }
@@ -194,11 +191,12 @@
       tl.to(
         prev.media,
         {
-          scale: 1.06,
-          y: -24,
-          filter: `blur(${getBlurAmount('out')}px) brightness(0.55)`,
+          scale: 1.02,
+          y: -14,
+          filter: 'none',
           duration: 0.9,
           ease: 'power2.inOut',
+          force3D: true,
         },
         label
       );
@@ -223,16 +221,17 @@
       tl.fromTo(
         curr.media,
         {
-          scale: 1.14,
-          y: 56,
-          filter: `blur(${getBlurAmount('in')}px) brightness(0.6)`,
+          scale: 1.04,
+          y: 28,
+          filter: 'none',
         },
         {
           scale: 1,
           y: 0,
-          filter: 'blur(0px) brightness(1)',
+          filter: 'none',
           duration: 1.15,
           ease: 'power3.out',
+          force3D: true,
         },
         `${label}+=0.22`
       );

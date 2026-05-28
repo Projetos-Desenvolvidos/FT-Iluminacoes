@@ -12,7 +12,7 @@
 
   if (!loader || !logoFill || !loaderLogo) return;
 
-  const MIN_MS = 1600;
+  const MIN_MS = 1200;
   const MAX_WAIT_MS = 12000;
   const FLY_DURATION = 1.05;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -167,7 +167,11 @@
   function trackImages() {
     const images = Array.from(document.querySelectorAll('img[src]')).filter((img) => {
       const src = img.getAttribute('src') || '';
-      return !src.startsWith('data:') && !img.closest('.ft-loader');
+      if (src.startsWith('data:') || img.closest('.ft-loader')) return false;
+      const loading = (img.getAttribute('loading') || '').toLowerCase();
+      const fetchPriority = (img.getAttribute('fetchpriority') || '').toLowerCase();
+      const isCritical = loading !== 'lazy' || fetchPriority === 'high';
+      return isCritical;
     });
 
     if (!images.length) {

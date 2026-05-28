@@ -161,47 +161,43 @@ svg {
   }
 
   .light-bar-scene {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
+    flex: none;
+    position: relative;
     width: 100%;
-    min-height: clamp(48px, 10vh, 72px);
-    height: auto;
-    margin: 0;
-    margin-top: auto;
+    height: 160px;
+    min-height: 0;
+    margin-top: -6px;
+    margin-bottom: 0;
   }
 
   .light-bar-fx {
-    position: relative;
-    left: auto;
-    right: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
     top: auto;
-    bottom: auto;
-    width: 100%;
-    height: clamp(64px, 16vh, 100px);
-    max-height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    bottom: 0;
+    width: auto;
+    height: min(56vh, 520px);
+    max-height: none;
+    display: block;
   }
 
   .light-bar-beam,
   .light-bar-glow-up {
-    height: 100%;
-    max-height: 100px;
+    height: min(54vh, 500px);
+    max-height: none;
   }
 
   .light-bar-glow-down {
-    display: none;
+    display: block;
   }
 
   .light-bar {
     position: absolute;
-    left: 8%;
-    right: 8%;
-    bottom: 50%;
-    transform: translateY(50%);
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: auto;
   }
 
@@ -532,6 +528,37 @@ svg {
   html.ft-lite-mobile .cinematic-portfolio--active,
   html.ft-lite-mobile .ft-portfolio-cinematic-scroll--active {
     touch-action: pan-y;
+  }
+
+  /* Reduz custo de GPU sem perder estética cinematográfica */
+  html.ft-lite-mobile .hero-studio .hero-ambient,
+  html.ft-lite-mobile .hero-studio .hero-text-wash,
+  html.ft-lite-mobile .cinematic-portfolio__glow,
+  html.ft-lite-mobile .finale__fog,
+  html.ft-lite-mobile .finale__floor-glow {
+    filter: none !important;
+  }
+
+  html.ft-lite-mobile .hero-studio .btn-hero,
+  html.ft-lite-mobile .hero-kpi,
+  html.ft-lite-mobile .btn-hero--secondary,
+  html.ft-lite-mobile .btn-hero--primary {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  html.ft-lite-mobile .cinematic-portfolio__glow,
+  html.ft-lite-mobile .finale__particle,
+  html.ft-lite-mobile .finale__beam {
+    animation: none !important;
+  }
+
+  html.ft-lite-mobile .about-section__showcase--scroll-driven .about-section__card,
+  html.ft-lite-mobile .ft-experiences-scroll--active .about-section__card,
+  html.ft-lite-mobile .cinematic-slide__media img,
+  html.ft-lite-mobile .finale__lights,
+  html.ft-lite-mobile .final-cta__word {
+    will-change: auto !important;
   }
 }
 

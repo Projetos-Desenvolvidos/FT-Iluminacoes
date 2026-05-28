@@ -35,10 +35,14 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
+    const ghostBlur = lowPerfMode ? 0 : 18;
+    const heroBlur = lowPerfMode ? 0 : 22;
+    const ctaBlur = lowPerfMode ? 0 : 14;
+
     gsap.set(manifest, { opacity: 0, y: 0 });
-    gsap.set(lineGhost, { opacity: 0, y: 72, filter: 'blur(18px)' });
-    gsap.set(lineHero, { opacity: 0, y: 96, filter: 'blur(22px)' });
-    gsap.set(cta, { opacity: 0, y: 56, scale: 0.94, filter: 'blur(14px)' });
+    gsap.set(lineGhost, { opacity: 0, y: 72, filter: ghostBlur ? `blur(${ghostBlur}px)` : 'none' });
+    gsap.set(lineHero, { opacity: 0, y: 96, filter: heroBlur ? `blur(${heroBlur}px)` : 'none' });
+    gsap.set(cta, { opacity: 0, y: 56, scale: 0.94, filter: ctaBlur ? `blur(${ctaBlur}px)` : 'none' });
     if (ctaGlow) gsap.set(ctaGlow, { opacity: 0, scale: 0.85 });
     if (lights) gsap.set(lights, { y: 40, scale: 1.05 });
     if (fog) gsap.set(fog, { opacity: 0.35 });
@@ -65,7 +69,7 @@
         {
           opacity: 0.38,
           y: 0,
-          filter: 'blur(0px)',
+          filter: 'none',
           duration: 0.28,
           ease: 'power3.out',
         },
@@ -76,7 +80,7 @@
         {
           opacity: 1,
           y: 0,
-          filter: 'blur(0px)',
+          filter: 'none',
           duration: 0.38,
           ease: 'power3.out',
         },
@@ -134,7 +138,7 @@
         opacity: 1,
         y: 0,
         scale: 1,
-        filter: 'blur(0px)',
+        filter: 'none',
         duration: 0.42,
         ease: 'power3.out',
       },
