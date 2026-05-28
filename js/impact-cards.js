@@ -4,6 +4,9 @@
 (function () {
   const section = document.querySelector('.impact-section');
   const cards = document.querySelectorAll('.impact-card');
+  const headerLines = gsap.utils.toArray('.impact-section__header .impact-section__line');
+  const headerButtons = gsap.utils.toArray('.impact-section__header .btn-hero');
+  const headerTargets = [...headerLines, ...headerButtons];
 
   if (!section || !cards.length || typeof gsap === 'undefined') return;
 
@@ -40,6 +43,7 @@
   }
 
   function revealStatic() {
+    if (headerTargets.length) gsap.set(headerTargets, { opacity: 1, y: 0 });
     cards.forEach((card) => {
       const target = Number(card.dataset.value) || 0;
       setCardValue(card, target);
@@ -64,7 +68,28 @@
   }
 
   function playReveal() {
-    gsap.fromTo(
+    const tl = gsap.timeline({
+      onComplete: () => {
+        section.classList.add('impact-section--revealed');
+        animateCounters();
+      },
+    });
+
+    if (headerTargets.length) {
+      tl.fromTo(
+        headerTargets,
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.1,
+          ease: 'power2.out',
+        }
+      );
+    }
+
+    tl.fromTo(
       cards,
       { opacity: 0, y: 40, scale: 0.94 },
       {
@@ -74,11 +99,8 @@
         duration: 0.85,
         stagger: 0.14,
         ease: 'power3.out',
-        onComplete: () => {
-          section.classList.add('impact-section--revealed');
-          animateCounters();
-        },
-      }
+      },
+      headerTargets.length ? '-=0.25' : 0
     );
   }
 
@@ -88,6 +110,7 @@
       return;
     }
 
+    if (headerTargets.length) gsap.set(headerTargets, { opacity: 0, y: 24 });
     gsap.set(cards, { opacity: 0, y: 40, scale: 0.94 });
 
     if (typeof ScrollTrigger === 'undefined') {
